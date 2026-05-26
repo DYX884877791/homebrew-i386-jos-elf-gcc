@@ -1,7 +1,7 @@
 class I386JosElfGcc < Formula
   homepage "http://pdos.csail.mit.edu/6.828/2014/tools.html"
-  url "http://ftpmirror.gnu.org/gcc/gcc-4.6.1/gcc-4.6.1.tar.bz2"
-  sha256 "8eebf51c908151d1f1a3756c8899c5e71572e8469a547ad72a1ef16a08a31b59"
+  url "http://ftpmirror.gnu.org/gcc/gcc-4.9.2/gcc-4.9.2.tar.bz2"
+  sha256 "2020c98295856aa13fda0f2f3a4794490757fc24bcca918d52cc8b4917b972dd"
 
   depends_on 'gmp'
   depends_on 'libmpc'
