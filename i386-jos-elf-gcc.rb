@@ -8,8 +8,6 @@ class I386JosElfGcc < Formula
   depends_on 'mpfr'
   depends_on 'i386-jos-elf-binutils'
 
-  patch :DATA
-
   def install
     mkdir 'build' do
       system "../configure", "--prefix=#{prefix}",
@@ -40,24 +38,3 @@ class I386JosElfGcc < Formula
     system "#{bin}/i386-jos-elf-gcc -v"
   end
 end
-
-__END__
-diff --git a/gcc/gengtype.c b/gcc/gengtype.c
-index abf17f8..550d3bb 100644
---- a/gcc/gengtype.c
-+++ b/gcc/gengtype.c
-@@ -3594,13 +3594,13 @@ write_field_root (outf_p f, pair_p v, type_p type, const char *name,
-                  int has_length, struct fileloc *line, const char *if_marked,
-                  bool emit_pch, type_p field_type, const char *field_name)
- {
-+  struct pair newv;
-   /* If the field reference is relative to V, rather than to some
-      subcomponent of V, we can mark any subarrays with a single stride.
-      We're effectively treating the field as a global variable in its
-      own right.  */
-   if (v && type == v->type)
-     {
--      struct pair newv;
- 
-       newv = *v;
-       newv.type = field_type;
