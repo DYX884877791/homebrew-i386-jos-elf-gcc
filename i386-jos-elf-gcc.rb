@@ -22,11 +22,17 @@ class I386JosElfGcc < Formula
                              "--with-as=#{Formula["i386-jos-elf-binutils"].opt_prefix}/bin/i386-jos-elf-as",
                              "--with-ld=#{Formula["i386-jos-elf-binutils"].opt_prefix}/bin/i386-jos-elf-ld",
                              "--without-headers",
-                             "--enable-languages=c"
+                             "--enable-languages=c,c++"
       system "make", "all-gcc"
       system "make", "install-gcc"
       system "make", "all-target-libgcc"
       system "make", "install-target-libgcc"
+
+      # GCC needs this folder in #{prefix} in order to see the binutils.
+      # It doesn't look for i386-jos-elf-as on $PREFIX/bin. Rather, it looks
+      # for as on $PREFIX/$TARGET/bin/ ($PREFIX/i386-jos-elf/bin/as).
+      binutils = Formula["i386-jos-elf-binutils"].prefix
+      ln_sf "#{binutils}/i386-jos-elf", "#{prefix}/i386-jos-elf"
     end
   end
 
