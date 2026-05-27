@@ -8,6 +8,8 @@ class I386JosElfGcc < Formula
   depends_on 'mpfr'
   depends_on 'i386-jos-elf-binutils'
 
+  patch :DATA
+
   def install
     mkdir 'build' do
       system "../configure", "--prefix=#{prefix}",
@@ -38,3 +40,16 @@ class I386JosElfGcc < Formula
     system "#{bin}/i386-jos-elf-gcc -v"
   end
 end
+
+__END__
+diff -pur a/gcc/system.h b/gcc/system.h
+--- a/gcc/system.h	2014-01-02 23:23:26.000000000 +0100
++++ b/gcc/system.h	2017-09-03 18:38:12.000000000 +0200
+@@ -203,6 +203,7 @@ extern int errno;
+
+ #ifdef __cplusplus
+ # include <cstring>
++# include <new>
+ #endif
+
+ /* Some of glibc's string inlines cause warnings.  Plus we'd rather
