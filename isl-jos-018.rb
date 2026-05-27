@@ -25,11 +25,6 @@ class IslJos018 < Formula
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "7d90ca0810ac78ac9357f86cf245ec9dfdc7c2171646d4993972d36c1b84e35b"
   end
 
-  keg_only :versioned_formula
-
-  # Match `gcc@5` deprecation date, as they have to be disabled together
-  deprecate! date: "2022-09-09", because: :versioned_formula
-
   depends_on "gmp"
 
   # Fix -flat_namespace being used on Big Sur and later.
