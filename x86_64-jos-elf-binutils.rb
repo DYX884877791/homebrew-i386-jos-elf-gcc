@@ -1,4 +1,4 @@
-class X8664ElfBinutils < Formula
+class X8664JosElfBinutils < Formula
   desc "GNU binutils for i386 & x86_64 (ELF/EFI PE)"
   homepage "http://www.gnu.org/software/binutils/"
   url "http://ftpmirror.gnu.org/binutils/binutils-2.26.tar.bz2"
@@ -6,9 +6,8 @@ class X8664ElfBinutils < Formula
 
   def install
     args = []
-    args << "--program-prefix=x86_64-elf-"
     args << "--enable-targets=x86_64-elf,i386-elf"
-    args << "--target=x86_64-elf"
+    args << "--target=x86_64-jos-elf"
     args << "--prefix=#{prefix}"
     args << "--infodir=#{info}"
     args << "--mandir=#{man}"

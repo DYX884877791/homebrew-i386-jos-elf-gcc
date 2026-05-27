@@ -1,4 +1,4 @@
-class X8664ElfGcc < Formula
+class X8664JosElfGcc < Formula
   desc "GNU compiler collection for i386-elf & x86_64-elf"
   homepage "https://gcc.gnu.org"
   url "http://ftpmirror.gnu.org/gcc/gcc-6.1.0/gcc-6.1.0.tar.bz2"
@@ -8,22 +8,21 @@ class X8664ElfGcc < Formula
   depends_on "isl"
   depends_on "libmpc"
   depends_on "mpfr"
-  depends_on "x86_64-elf-binutils"
+  depends_on "x86_64-jos-elf-binutils"
 
   def install
     args = []
-    args << "--program-prefix=x86_64-elf-"
     args << "--enable-languages=c,c++"
     args << "--enable-targets=x86_64-elf,i386-elf"
-    args << "--target=x86_64-elf"
+    args << "--target=x86_64-jos-elf"
     args << "--prefix=#{prefix}"
     args << "--disable-nls"
     args << "--without-headers"
     args << "--with-gmp=#{Formula["gmp"].opt_prefix}"
     args << "--with-mpfr=#{Formula["mpfr"].opt_prefix}"
     args << "--with-mpc=#{Formula["libmpc"].opt_prefix}"
-    args << "--with-ld=#{Formula["x86_64-elf-binutils"].opt_bin/'x86_64-elf-ld'}"
-    args << "--with-as=#{Formula["x86_64-elf-binutils"].opt_bin/'x86_64-elf-as'}"
+    args << "--with-ld=#{Formula["x86_64-jos-elf-binutils"].opt_bin/'x86_64-jos-elf-ld'}"
+    args << "--with-as=#{Formula["x86_64-jos-elf-binutils"].opt_bin/'x86_64-jos-elf-as'}"
 
     mkdir "build" do
       system "../configure", *args
