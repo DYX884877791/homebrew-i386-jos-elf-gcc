@@ -5,7 +5,7 @@ class X8664JosElfGcc < Formula
   sha256 "09c4c85cabebb971b1de732a0219609f93fc0af5f86f6e437fd8d7f832f1a351"
 
   depends_on "gmp"
-  depends_on "isl"
+  depends_on "isl014"
   depends_on "libmpc"
   depends_on "mpfr"
   depends_on "x86_64-jos-elf-binutils"
