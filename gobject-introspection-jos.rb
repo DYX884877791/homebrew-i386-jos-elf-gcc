@@ -21,7 +21,7 @@ class GobjectIntrospectionJos < Formula
   depends_on "bison" => :build
   depends_on "meson" => :build
   depends_on "ninja" => :build
-  depends_on "cairo"
+  depends_on "cairo-jos"
   depends_on "glib-jos-2824"
   depends_on "pkgconf"
   # Ships a `_giscanner.cpython-312-darwin.so`, so needs a specific version.

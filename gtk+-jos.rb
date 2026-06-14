@@ -33,8 +33,8 @@ class GtkxJos < Formula
   depends_on maximum_macos: [:sonoma, :build]
   depends_on "pkgconf" => [:build, :test]
   depends_on "at-spi2-core"
-  depends_on "cairo"
-  depends_on "gdk-pixbuf"
+  depends_on "cairo-jos"
+  depends_on "gdk-pixbuf-jos"
   depends_on "glib-jos-2824"
   depends_on "hicolor-icon-theme"
   depends_on "pango"

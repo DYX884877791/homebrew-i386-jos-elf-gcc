@@ -18,7 +18,7 @@ class GdkPixbufJos < Formula
 
   depends_on "docutils" => :build # for rst2man
   depends_on "gettext" => :build
-  depends_on "gobject-introspection" => :build
+  depends_on "gobject-introspection-jos" => :build
   depends_on "meson" => :build
   depends_on "ninja" => :build
   depends_on "pkgconf" => [:build, :test]
