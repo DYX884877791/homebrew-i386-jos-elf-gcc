@@ -61,6 +61,8 @@ class GlibJos2824 < Formula
   end
 
   def install
+    # 1. 将自定义 Python 的 bin 目录加到 PATH 最前面
+    ENV.prepend_path "PATH", "/Library/Frameworks/Python.framework/Versions/3.13/bin"
     python = "python3.13"
     # 可选：增加检查，如果系统中没有 python3.13 则提前报错
     unless which(python)
