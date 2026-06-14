@@ -25,7 +25,7 @@ class GlibJos2824 < Formula
   depends_on "python-setuptools" => :build # for gobject-introspection
   depends_on "pcre2"
   depends_on "python-packaging"
-  # depends_on "python@3.13"
+  depends_on "python@3.13"
 
   uses_from_macos "flex" => :build # for gobject-introspection
   uses_from_macos "libffi", since: :catalina
@@ -61,7 +61,7 @@ class GlibJos2824 < Formula
   end
 
   def install
-    # 1. 将自定义 Python 的 bin 目录加到 PATH 最前面
+    # 1. 将自定义 Python 的 bin 目录加到 PATH 最前面，因此所有 python3.13 调用都会优先使用您自定义的版本，而非 Homebrew 安装的那个。
     ENV.prepend_path "PATH", "/Library/Frameworks/Python.framework/Versions/3.13/bin"
     python = "python3.13"
     # 可选：增加检查，如果系统中没有 python3.13 则提前报错

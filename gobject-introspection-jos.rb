@@ -25,7 +25,7 @@ class GobjectIntrospectionJos < Formula
   depends_on "glib-jos-2824"
   depends_on "pkgconf"
   # Ships a `_giscanner.cpython-312-darwin.so`, so needs a specific version.
-  # depends_on "python@3.13"
+  depends_on "python@3.13"
 
   uses_from_macos "flex" => :build
   uses_from_macos "libffi", since: :catalina
