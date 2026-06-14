@@ -41,7 +41,7 @@ class GtkxJos < Formula
 
   on_macos do
     depends_on "gettext"
-    depends_on "harfbuzz"
+    depends_on "harfbuzz-jos"
   end
 
   on_linux do
