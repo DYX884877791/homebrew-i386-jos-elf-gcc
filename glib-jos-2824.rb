@@ -1,4 +1,4 @@
-class GlibJos2821 < Formula
+class GlibJos2824 < Formula
   include Language::Python::Shebang
 
   desc "Core application library for C"
