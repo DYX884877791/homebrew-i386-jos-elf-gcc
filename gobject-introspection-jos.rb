@@ -25,7 +25,7 @@ class GobjectIntrospectionJos < Formula
   depends_on "glib-jos-2824"
   depends_on "pkgconf"
   # Ships a `_giscanner.cpython-312-darwin.so`, so needs a specific version.
-  depends_on "python@3.13"
+  # depends_on "python@3.13"
 
   uses_from_macos "flex" => :build
   uses_from_macos "libffi", since: :catalina
@@ -59,7 +59,14 @@ class GobjectIntrospectionJos < Formula
   end
 
   def install
-    venv = virtualenv_create(libexec, "python3.13")
+    # 直接使用 PATH 中的 python3.13（由用户自行提供）
+    python_exe = "python3.13"
+    # 可选：增加检查，如果系统中没有 python3.13 则提前报错
+    unless which(python_exe)
+        odie "Python 3.13 is required but not found in PATH. Please install Python 3.13 first."
+    end
+
+    venv = virtualenv_create(libexec, python_exe)
     venv.pip_install resources
     ENV.prepend_path "PATH", venv.root/"bin"
 
