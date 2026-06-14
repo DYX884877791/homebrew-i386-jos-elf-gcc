@@ -25,7 +25,7 @@ class GlibJos2824 < Formula
   depends_on "python-setuptools" => :build # for gobject-introspection
   depends_on "pcre2"
   depends_on "python-packaging"
-  depends_on "python@3.13"
+  # depends_on "python@3.13"
 
   uses_from_macos "flex" => :build # for gobject-introspection
   uses_from_macos "libffi", since: :catalina
@@ -62,6 +62,10 @@ class GlibJos2824 < Formula
 
   def install
     python = "python3.13"
+    # 可选：增加检查，如果系统中没有 python3.13 则提前报错
+    unless which(python)
+      odie "Python 3.13 is required but not found in PATH. Please install Python 3.13 first."
+    end
     # Avoid the sandbox violation when an empty directory is created outside of the formula prefix.
     inreplace "gio/meson.build", "install_emptydir(glib_giomodulesdir)", ""
 

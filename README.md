@@ -1,4 +1,7 @@
 # i386-jos-elf-gcc
+## 查看依赖树
+brew deps i386-jos-elf-gcc --tree
+
 ## git pull 的路径为：
 /usr/local/Homebrew/Library/Taps/dyx884877791/homebrew-i386-jos-elf-gcc/
 
