@@ -26,7 +26,7 @@ class GtkxJos < Formula
     sha256 x86_64_linux:   "a73d8262778cf3541249d2ce04dbe9c2e545cc46401c695a77a893f812f35920"
   end
 
-  depends_on "gobject-introspection" => :build
+  depends_on "gobject-introspection-jos" => :build
   # error: 'CGWindowListCreateImage' is unavailable: obsoleted in macOS 15.0 - Please use ScreenCaptureKit instead
   # NOTE: We could potentially use an older deployment target; however, `gtk+` has been EOL since 2020.
   # So rather than trying to workaround obsolete APIs, the limit is a deadline to deprecate `gtk+` and dependents.
