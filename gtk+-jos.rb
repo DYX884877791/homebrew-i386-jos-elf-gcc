@@ -32,12 +32,12 @@ class GtkxJos < Formula
   # So rather than trying to workaround obsolete APIs, the limit is a deadline to deprecate `gtk+` and dependents.
   depends_on maximum_macos: [:sonoma, :build]
   depends_on "pkgconf" => [:build, :test]
-  depends_on "at-spi2-core"
+  depends_on "at-spi2-core-jos"
   depends_on "cairo-jos"
   depends_on "gdk-pixbuf-jos"
   depends_on "glib-jos-2824"
   depends_on "hicolor-icon-theme"
-  depends_on "pango"
+  depends_on "pango-jos"
 
   on_macos do
     depends_on "gettext"
