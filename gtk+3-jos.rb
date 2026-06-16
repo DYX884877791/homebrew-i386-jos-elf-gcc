@@ -34,7 +34,7 @@ class Gtkx3Jos < Formula
   depends_on "fribidi"
   depends_on "gdk-pixbuf-jos"
   depends_on "glib-jos-2824"
-  depends_on "gsettings-desktop-schemas"
+  depends_on "gsettings-desktop-schemas-jos"
   depends_on "harfbuzz-jos"
   depends_on "hicolor-icon-theme"
   depends_on "libepoxy"
