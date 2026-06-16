@@ -76,7 +76,7 @@ class CairoJos < Formula
     fontconfig = Formula["fontconfig"]
     freetype = Formula["freetype"]
     gettext = Formula["gettext"]
-    glib = Formula["glib"]
+    glib = Formula["glib-jos-2824"]
     libpng = Formula["libpng"]
     pixman = Formula["pixman"]
     flags = %W[
