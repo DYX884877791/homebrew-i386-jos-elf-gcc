@@ -94,7 +94,7 @@ class GccAT49OsGeMojave < Formula
       "--build=x86_64-apple-darwin#{osmajor}",
       "--prefix=#{prefix}",
       "--libdir=#{lib}/gcc/#{version_suffix}",
-      "--enable-languages=c,c++,fortran,objc,obj-c++",
+      "--enable-languages=c,c++",
       # Make most executables versioned to avoid conflicts.
       "--program-suffix=-#{version_suffix}",
       "--with-system-zlib",
