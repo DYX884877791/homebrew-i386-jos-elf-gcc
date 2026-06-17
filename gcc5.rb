@@ -33,7 +33,7 @@ class Gcc5 < Formula
   option "with-jit", "Build the jit compiler"
   option "without-fortran", "Build without the gfortran compiler"
   # enabling multilib on a host that can"t run 64-bit results in build failures
-  option "without-multilib", "Build without multilib support" if MacOS.prefer_64_bit?
+  option "without-multilib", "Build without multilib support"
 
   depends_on "gmp"
   depends_on "libmpc"
@@ -123,11 +123,7 @@ class Gcc5 < Formula
       args << "--with-ecj-jar=#{Formula["ecj"].opt_share}/java/ecj.jar"
     end
 
-    if !MacOS.prefer_64_bit? || build.without?("multilib")
-      args << "--disable-multilib"
-    else
-      args << "--enable-multilib"
-    end
+    args << "--disable-multilib"
 
     args << "--enable-host-shared" if build.with?("jit") || build.with?("all-languages")
 
