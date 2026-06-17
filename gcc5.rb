@@ -25,10 +25,15 @@ class Gcc5 < Formula
   mirror "https://ftp.gnu.org/gnu/gcc/gcc-5.3.0/gcc-5.3.0.tar.bz2"
   sha256 "b84f5592e9218b73dbae612b5253035a7b34a9a1f7688d2e1bfaaf7267d5c4db"
 
+  # bottle do
+  #   sha256 "896f62585ec928f4bbc42b3dbfde809a50677d1df32cb174af0e5922cdad7f78" => :el_capitan
+  #   sha256 "628684893059907f833d28ccaa1327c94b4c64e7a1078154bac76ce530267011" => :yosemite
+  #   sha256 "1b174123b543c436be5c726fc2c46e38268e5d3fc2b38c451f8e6169052bfbda" => :mavericks
+  # end
   bottle do
-    sha256 "896f62585ec928f4bbc42b3dbfde809a50677d1df32cb174af0e5922cdad7f78" => :el_capitan
-    sha256 "628684893059907f833d28ccaa1327c94b4c64e7a1078154bac76ce530267011" => :yosemite
-    sha256 "1b174123b543c436be5c726fc2c46e38268e5d3fc2b38c451f8e6169052bfbda" => :mavericks
+    sha256 el_capitan: "896f62585ec928f4bbc42b3dbfde809a50677d1df32cb174af0e5922cdad7f78"
+    sha256 yosemite:   "628684893059907f833d28ccaa1327c94b4c64e7a1078154bac76ce530267011"
+    sha256 mavericks:  "1b174123b543c436be5c726fc2c46e38268e5d3fc2b38c451f8e6169052bfbda"
   end
 
   # GCC's Go compiler is not currently supported on Mac OS X.
