@@ -56,7 +56,7 @@ class Gcc5 < Formula
   end
 
   # GCC bootstraps itself, so it is OK to have an incompatible C++ stdlib
-  cxxstdlib_check :skip
+  # cxxstdlib_check :skip
 
   # Fix for libgccjit.so linkage on Darwin.
   # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=64089
