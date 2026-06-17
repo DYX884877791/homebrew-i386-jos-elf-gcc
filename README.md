@@ -90,6 +90,7 @@ $ brew outdated
 # 锁定某个不想更新的包
 $ brew pin <package-name>       # 锁定指定包
 $ brew unpin <package-name>     # 取消锁定指定包
+$ brew list --pinned            # 查看所有被锁定的包
 
 # 清理旧包
 $ brew cleanup                  # 清理所有旧版本的包
