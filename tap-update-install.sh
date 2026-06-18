@@ -6,6 +6,28 @@
 
 set -e  # 遇到错误立即退出
 
+
+# $ xcode-select -p
+#/Users/strager/Applications/Xcode_8.3.3.app/Contents/Developer
+#
+#$ clang --version
+#Apple LLVM version 8.1.0 (clang-802.0.42)
+#Target: x86_64-apple-darwin16.7.0
+#Thread model: posix
+#InstalledDir: /Users/strager/Applications/Xcode_8.3.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+#
+#$ as --version
+#Apple LLVM version 8.1.0 (clang-802.0.42)
+#Target: x86_64-apple-darwin16.7.0
+#Thread model: posix
+#InstalledDir: /Users/strager/Applications/Xcode_8.3.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+#
+#$ ld -v
+#@(#)PROGRAM:ld  PROJECT:ld64-278.4
+#configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
+#LTO support using: LLVM version 8.1.0, (clang-802.0.42)
+#TAPI support using: Apple TAPI version 1.33.11
+
 # 使用brew安装软件时，默认每次都会自动更新homebrew，显示
 #Updating Homebrew...，网络状况不好或者没有换源的时候，很慢，会卡在这里许久不动。
 # 可以关闭自动更新，在命令行执行：

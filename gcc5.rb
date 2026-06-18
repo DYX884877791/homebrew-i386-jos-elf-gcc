@@ -62,6 +62,29 @@ class Gcc5 < Formula
   # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=64089
   patch :DATA
 
+  # Fix build with Xcode 9
+  # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=82091
+  if DevelopmentTools.clang_build_version >= 900
+    patch do
+      url "https://raw.githubusercontent.com/Homebrew/formula-patches/c2dae73416/gcc%404.9/xcode9.patch"
+      sha256 "92c13867afe18ccb813526c3b3c19d95a2dd00973f9939cf56ab7698bdd38108"
+    end
+  end
+
+  # Fix issues with macOS 10.13 or higher headers and parallel build on APFS
+  if MacOS.version >= :mojave
+    patch do
+      url "https://raw.githubusercontent.com/Homebrew/formula-patches/b7c7883d/gcc%404.9/high_sierra_2.patch"
+      sha256 "c7bcad4657292f6939b7322eb5e821c4a110c4f326fd5844890f0e9a85da8cae"
+    end
+    if DevelopmentTools.clang_build_version >= 1000
+      patch do
+        url "https://raw.githubusercontent.com/sofair/gcc49mojave_brew/master/gcc_49_os_ge_mojave_fix3.patch"
+        sha256 "ab297141f9d4387935c2e3bb7519fac83133efdb6b81216e8764cbe406655a5a"
+      end
+    end
+  end
+
   def install
     # GCC will suffer build errors if forced to use a particular linker.
     ENV.delete "LD"
