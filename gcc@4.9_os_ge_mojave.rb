@@ -130,6 +130,67 @@ class GccAT49OsGeMojave < Formula
         args << "--with-sysroot=#{MacOS.sdk_path}"
       #end
 
+      # 一、配置
+      # 先选择要把 GCC 构建在哪个目录，构建之前需要先进行 configure, 不要选在源文件所 在目录或其子目录，GCC 并不支持这样做。
+      #
+      # GCC 的配置选项很多，初次接触的话可以尽量简单配置，比如：
+      #
+      # 选项	描述
+      # --enable-languages	指定要构建哪些语言对应的编译器及运行时库
+      # --prefix	指定安装目录，不要与源码或构建目录相同
+      # --disable-bootstrap	禁止 bootstrap
+      # GCC 在构建时，默认会构建 3 次：
+      # 1. 用本地 gcc 作为编译器构建出 stage1-gcc
+      # 2. 用 stage1-gcc 作为编译器构建出 stage2-gcc
+      # 3. 用 stage2-gcc 作为编译器构建出 stage3-gcc
+      #
+      # 这个过程叫做 bootstrap 。
+      #
+      # 对比 Stage 2 和 Stage 3 的输出：
+      #   如果两者编译结果一致，说明编译器生成的是“自我一致”的（self-hosting）。
+      #   如果不一致，说明中间某个阶段的编译器可能有 Bug。
+      #
+      # stage3-gcc 被认为是最好或最符合源码的一个构建，但比较费时，可以使用 --disable-bootstrap 来禁止。
+      # 但需要注意，在修改过源码后，如果没有 bootstrap 可以编译通过，并不代表 bootstrap 一定会过。（要不然 bootstrap 也没有存在的意义 了。）
+      #
+      # 二、为什么启用 Bootstrap？
+      # 启用 --enable-bootstrap 的优点：
+      #
+      # ✅ 确保可靠性：通过多次自编译验证最终生成的编译器稳定无误。
+      # ✅ 捕捉错误：可以捕捉某些编译器 bug 或平台特有的问题。
+      # ✅ 适用于生产版本编译器：官方发布的 GCC 编译器都是使用 bootstrap 构建的。
+      #
+      # 三、何时禁用 Bootstrap？
+      # 你可能会想禁用它（使用 --disable-bootstrap）的场景：
+      #
+      # 🧱 在资源受限的系统上（时间或 CPU 不足）。
+      # 🛠️ 仅用于构建测试版本，时间优先。
+      # 🧪 开发者调试编译器，而不是用来发布。
+      #
+      #
+      # 还有就是 GCC 默认是构建 release 版本，不利于调试，如果要构建 debug 版，需要在 configure 时就进行配置，构建 debug 版的命令为(假设 GCC 源码位于 ${GCC_SRC})：
+      #
+      # CFLAGS="-O0 -g3 -fno-inline"              \
+      # CXXFLAGS="-O0 -g3 -fno-inline"            \
+      # CFLAGS_FOR_BUILD="-O0 -g3 -fno-inline"    \
+      # CFLAGS_FOR_TARGET="-O0 -g3 -fno-inline"   \
+      # CXXFLAGS_FOR_BUILD="-O0 -g3 -fno-inline"  \
+      # CXXFLAGS_FOR_TARGET="-O0 -g3 -fno-inline" \
+      # ${GCC_SRC}/configure --enable-languages=c,c++ --disable-bootstrap --prefix=/tmp/gcc-tmpi
+      # 构建 release 版的命令为（如果不需要 bootstrap，可以自己加上参数）：
+      #
+      # ${GCC_SRC}/configure --enable-languages=c,c++ --prefix=/tmp/gcc-tmpi
+      # 如果 configure 失败，可能是缺少依赖的库，根据提示安装上即可。比如 Ubuntu 可 以尝试用下面这条命令安装部分依赖：
+      #
+      # sudo apt install -y libgmp-dev libmpfr-dev libmpc-dev
+      # 构建
+      # configure 之后只需在 build 目录中运行 make 即可。根据计算机配置可以加上合 适的 -j 参数。
+      #
+      # 安装
+      # 如果只是想试用一下新编译的 GCC，你并不需要安装它。假设构建目录为 ${BUILD}, 找到 ${BUILD}/gcc 目录下的 xgcc 或 xg++, 它们就是相 应的 c/c++ 编译器。可以使用下面的方法使用它：
+      #
+      # ${BUILD}/gcc/xgcc -B${BUILD}/gcc demo.c
+      # 如果你确实想要安装， make install 就可以了。
       system "../configure", *args
       system "make", "V=1", "bootstrap"
 
