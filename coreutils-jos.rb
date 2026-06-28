@@ -137,15 +137,15 @@ diff --git a/configure.ac b/configure.ac
 index 5ea280f26..de380e16b 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -693,8 +693,9 @@ AC_LINK_IFELSE(
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-a = _mm512_clmulepi64_epi128 (a, b, 0x00);
-a = _mm512_shuffle_epi8 (a, b);
+@@ -732,8 +732,9 @@ AC_LINK_IFELSE(
+                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+       a = _mm512_clmulepi64_epi128 (a, b, 0x00);
+       a = _mm512_shuffle_epi8 (a, b);
 -      return __builtin_cpu_supports ("avx512bw") &&
-                                       -        __builtin_cpu_supports ("avx512f");
+-        __builtin_cpu_supports ("avx512f");
 +      return __builtin_cpu_supports ("vpclmulqdq")
 +             && __builtin_cpu_supports ("avx512bw")
 +             && __builtin_cpu_supports ("avx512f");
-}
-]])
-],[
+     }
+   ]])
+   ],[
