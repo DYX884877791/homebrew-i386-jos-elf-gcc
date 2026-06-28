@@ -1,1 +1,1 @@
-sh tap-update-install.sh gawk
+sh tap-update-install.sh crosstool-ng-jos

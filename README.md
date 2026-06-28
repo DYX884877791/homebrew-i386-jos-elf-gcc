@@ -105,6 +105,7 @@ $ brew info <package>           # 显示某个包信息
 $ brew info                     # 显示安装的软件数量、文件数量以及占用空间
 
 # 安装常用的 GNU 实用工具
+## https://gist.github.com/skyzyx/3438280b18e4f7c490db8a2a2ca0b9da
 macOS 下自带了很多实用工具，如 sed、grep 等（位于 /usr/bin/ 目录下）。
 需要注意，这些实用工具是由 BSD 提供的，而 Linux 系统下的 实用工具则是由 GNU 提供的。
 BSD 和 GNU 实用工具的命令行语法有相似之处，但也有差异。
