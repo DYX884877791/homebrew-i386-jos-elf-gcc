@@ -59,7 +59,10 @@ class CoreutilsJos < Formula
 
   def install
     ENV.runtime_cpu_detection
-    system "./bootstrap" if build.head?
+    # system "./bootstrap" if build.head?
+    if OS.mac? && MacOS.version == :high_sierra
+      system "./bootstrap"
+    end
 
     args = %W[
       --prefix=#{prefix}
