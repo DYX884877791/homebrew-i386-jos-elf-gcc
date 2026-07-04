@@ -1,3 +1,4 @@
+# https://github.com/Homebrew/homebrew-core/commit/1863d625ca030839dbff168f792d9027869a92fb
 class GccAT63OsHighSierra < Formula
 
   def osmajor
@@ -25,9 +26,9 @@ class GccAT63OsHighSierra < Formula
   option "without-fortran", "Build without the gfortran compiler"
 
   depends_on "gmp"
-  depends_on "libmpc"
+  depends_on "libmpc-jos"
   depends_on "mpfr"
-  depends_on "isl"
+  depends_on "isl-jos-014"
 
   fails_with :gcc_4_0
 
