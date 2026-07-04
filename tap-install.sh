@@ -1,1 +1,1 @@
-sh tap-update-install.sh coreutils-jos
+sh tap-update-install.sh gcc@4.9_os_high_sierra
