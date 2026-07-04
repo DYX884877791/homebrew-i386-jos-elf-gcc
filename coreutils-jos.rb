@@ -1,24 +1,23 @@
-class CoreutilsJos < Formula
+class Coreutils < Formula
   desc "GNU File, Shell, and Text utilities"
   homepage "https://www.gnu.org/software/coreutils/"
-  url "https://ftpmirror.gnu.org/gnu/coreutils/coreutils-9.7.tar.xz"
-  mirror "https://ftp.gnu.org/gnu/coreutils/coreutils-9.7.tar.xz"
-  sha256 "e8bb26ad0293f9b5a1fc43fb42ba970e312c66ce92c1b0b16713d7500db251bf"
+  url "https://ftpmirror.gnu.org/gnu/coreutils/coreutils-9.11.tar.xz"
+  mirror "https://ftp.gnu.org/gnu/coreutils/coreutils-9.11.tar.xz"
+  sha256 "394024eda0a5955217ceda9cd1201e65dc8fa3aa29c2951135a49521d57c3cc3"
   license "GPL-3.0-or-later"
+  compatibility_version 1
 
   bottle do
-    sha256 arm64_tahoe:   "8c13e6555d81a3f54f36223c1440572456c546beeb6ff875a76a5777fe08a1ff"
-    sha256 arm64_sequoia: "5d3e3c74de367a4d8ae6f22457732a8e5d39030c46f8f585b1780c0a916d0c8e"
-    sha256 arm64_sonoma:  "4092845c230a1b20213f3896125f12484cf72dcaca28e111544dbacb1110c8eb"
-    sha256 arm64_ventura: "84dc5707dd057de5ed4c6b79ae33c807dd00890cf470a64d3f200295974dec33"
-    sha256 sonoma:        "c7580a41bcd888acda07bd8b2c6c0c194a3763a27d36b1a48210a96f22ee773c"
-    sha256 ventura:       "838f1374519d8ddab94bfb910d57f802d6551baf4b97d6580e323d7d01f3180c"
-    sha256 arm64_linux:   "485b2b05cc5e1293ef2e7dc4b3471e916dddb170424d5a4a57483f2d829d0a60"
-    sha256 x86_64_linux:  "b4c41fd3102b03845f5ed8163a09dea3534db3773415524ddb5be10145aecb78"
+    sha256 arm64_tahoe:   "85beae05ca59ba87d10380b529d6fb3837f3527c79a6045abb52643eb3ff2316"
+    sha256 arm64_sequoia: "e75a85cd1f8b672e5201b0ceb01e0191256a883ef358607014d872e13abd7e8e"
+    sha256 arm64_sonoma:  "c129203771d9d9ed082bca8ae0cbd796c5894bfb46a376befac5eca5fdf923e5"
+    sha256 sonoma:        "8b7880f72dbbcebbeb2205dcd89c1b080c37348f4b88c0bae97ba27d7cd8ff9f"
+    sha256 arm64_linux:   "75a7c53b9f0f58c0cd9df9562c91a83d3ab828075d8b3929b0f96bcf1b8c0581"
+    sha256 x86_64_linux:  "897ba82f564f78ce7f4b1c3574bba98c5bf296b230654f2ccdc3087b088d455b"
   end
 
   head do
-    url "https://git.savannah.gnu.org/git/coreutils.git"
+    url "https://git.savannah.gnu.org/git/coreutils.git", branch: "master"
 
     depends_on "autoconf" => :build
     depends_on "automake" => :build
@@ -31,10 +30,6 @@ class CoreutilsJos < Formula
 
   depends_on "gmp"
   uses_from_macos "gperf" => :build
-
-  on_macos do
-    conflicts_with "uutils-coreutils", because: "coreutils and uutils-coreutils install the same binaries"
-  end
 
   on_sonoma :or_older do
     conflicts_with "md5sha1sum", because: "both install `md5sum` and `sha1sum` binaries"
@@ -53,9 +48,6 @@ class CoreutilsJos < Formula
   def breaks_macos_users
     %w[dir dircolors vdir]
   end
-
-  # https://debbugs.gnu.org/cgi/bugreport.cgi?bug=78562#8
-  patch :DATA
 
   def install
     ENV.runtime_cpu_detection
@@ -90,7 +82,7 @@ class CoreutilsJos < Formula
     end
     # Symlink all man(1) pages into libexec/gnuman without the 'g' prefix
     coreutils_filenames(man1).each do |cmd|
-      (libexec/"gnuman"/"man1").install_symlink man1/"g#{cmd}" => cmd
+      (libexec/"gnuman/man1").install_symlink man1/"g#{cmd}" => cmd
     end
     (libexec/"gnubin").install_symlink "../gnuman" => "man"
 

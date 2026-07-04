@@ -1,1 +1,1 @@
-sh tap-update-install.sh coreutils
+sh tap-update-install.sh coreutils-jos
