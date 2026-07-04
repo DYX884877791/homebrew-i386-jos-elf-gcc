@@ -56,6 +56,11 @@ class GccAT63OsHighSierra < Formula
     sha256 "863957f90a934ee8f89707980473769cff47ca0663c3906992da6afb242fb220"
   end
 
+  # Use libraries from Homebrew or macOS
+  patch do
+    file "patches/gcc6.3/gcc@6.3_os_high_sierra_fix1.patch"
+  end
+
   def install
     # GCC will suffer build errors if forced to use a particular linker.
     ENV.delete "LD"
