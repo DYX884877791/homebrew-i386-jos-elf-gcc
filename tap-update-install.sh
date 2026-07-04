@@ -181,7 +181,7 @@ else
 fi
 
 # 安装 Formula（如果已安装则升级）
-if brew list "$TAP_REF" &>/dev/null; then
+if brew list -v -d "$TAP_REF" &>/dev/null; then
     echo "⏭️ Formula 已安装，直接退出..."
     # brew upgrade "$TAP_REF"
     exit 1

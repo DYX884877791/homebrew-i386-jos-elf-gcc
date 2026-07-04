@@ -1,4 +1,4 @@
-class Coreutils < Formula
+class CoreutilsJos < Formula
   desc "GNU File, Shell, and Text utilities"
   homepage "https://www.gnu.org/software/coreutils/"
   url "https://ftpmirror.gnu.org/gnu/coreutils/coreutils-9.10.tar.xz"
