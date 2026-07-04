@@ -1,1 +1,1 @@
-sh tap-update-install.sh gcc@4.9_os_high_sierra
+sh tap-update-install.sh gcc@6.3_os_high_sierra
