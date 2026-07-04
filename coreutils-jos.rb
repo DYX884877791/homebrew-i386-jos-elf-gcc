@@ -1,19 +1,18 @@
 class Coreutils < Formula
   desc "GNU File, Shell, and Text utilities"
   homepage "https://www.gnu.org/software/coreutils/"
-  url "https://ftpmirror.gnu.org/gnu/coreutils/coreutils-9.11.tar.xz"
-  mirror "https://ftp.gnu.org/gnu/coreutils/coreutils-9.11.tar.xz"
-  sha256 "394024eda0a5955217ceda9cd1201e65dc8fa3aa29c2951135a49521d57c3cc3"
+  url "https://ftpmirror.gnu.org/gnu/coreutils/coreutils-9.10.tar.xz"
+  mirror "https://ftp.gnu.org/gnu/coreutils/coreutils-9.10.tar.xz"
+  sha256 "16535a9adf0b10037364e2d612aad3d9f4eca3a344949ced74d12faf4bd51d25"
   license "GPL-3.0-or-later"
-  compatibility_version 1
 
   bottle do
-    sha256 arm64_tahoe:   "85beae05ca59ba87d10380b529d6fb3837f3527c79a6045abb52643eb3ff2316"
-    sha256 arm64_sequoia: "e75a85cd1f8b672e5201b0ceb01e0191256a883ef358607014d872e13abd7e8e"
-    sha256 arm64_sonoma:  "c129203771d9d9ed082bca8ae0cbd796c5894bfb46a376befac5eca5fdf923e5"
-    sha256 sonoma:        "8b7880f72dbbcebbeb2205dcd89c1b080c37348f4b88c0bae97ba27d7cd8ff9f"
-    sha256 arm64_linux:   "75a7c53b9f0f58c0cd9df9562c91a83d3ab828075d8b3929b0f96bcf1b8c0581"
-    sha256 x86_64_linux:  "897ba82f564f78ce7f4b1c3574bba98c5bf296b230654f2ccdc3087b088d455b"
+    sha256 arm64_tahoe:   "dfb88b3ff6dd4c8aed52209d470dc8f2119d394f883411f4d17ba21972b602e4"
+    sha256 arm64_sequoia: "7e164c99394abd94a887c0e7e1ad207b5e04716cdef5aed549decee745f3f6d9"
+    sha256 arm64_sonoma:  "b82a04fafcf46095b3d051e8ec14c99a3899bb207bdf74326c7434b2d4329256"
+    sha256 sonoma:        "0c7b94b89fa6d8b9e38af1e8cc05bd3d4829a206bb75a9242fd69113b65a36b3"
+    sha256 arm64_linux:   "2b0acf715c4d544303c35d568d9a62bb4765f971fe9fd1e843db74df281db6d8"
+    sha256 x86_64_linux:  "292f082b0ec4adf5342fab822dd7c192fe5bce8160f0272965a38bb26a4f66ac"
   end
 
   head do
@@ -30,6 +29,10 @@ class Coreutils < Formula
 
   depends_on "gmp"
   uses_from_macos "gperf" => :build
+
+  on_macos do
+    conflicts_with "uutils-coreutils", because: "coreutils and uutils-coreutils install the same binaries"
+  end
 
   on_sonoma :or_older do
     conflicts_with "md5sha1sum", because: "both install `md5sum` and `sha1sum` binaries"
@@ -123,21 +126,3 @@ class Coreutils < Formula
     system bin/"gln", "-f", "test", "test.sha1"
   end
 end
-
-__END__
-diff --git a/configure.ac b/configure.ac
-index 5ea280f26..de380e16b 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -732,8 +732,9 @@ AC_LINK_IFELSE(
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-       a = _mm512_clmulepi64_epi128 (a, b, 0x00);
-       a = _mm512_shuffle_epi8 (a, b);
--      return __builtin_cpu_supports ("avx512bw") &&
--        __builtin_cpu_supports ("avx512f");
-+      return __builtin_cpu_supports ("vpclmulqdq")
-+             && __builtin_cpu_supports ("avx512bw")
-+             && __builtin_cpu_supports ("avx512f");
-     }
-   ]])
-   ],[
