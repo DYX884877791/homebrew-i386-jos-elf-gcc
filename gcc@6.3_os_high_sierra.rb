@@ -58,7 +58,7 @@ class GccAT63OsHighSierra < Formula
 
   # Use libraries from Homebrew or macOS
   patch do
-    url "https://raw.githubusercontent.com/DYX884877791/homebrew-i386-jos-elf-gcc/refs/heads/master/patches/gcc@6.3_os_high_sierra_fix1.patch"
+    url "https://raw.githubusercontent.com/DYX884877791/homebrew-i386-jos-elf-gcc/refs/heads/master/patches/gcc6.3/gcc@6.3_os_high_sierra_fix1.patch"
   end
 
   def install
