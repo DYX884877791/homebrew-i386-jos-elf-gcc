@@ -114,7 +114,7 @@ class GccAT49OsGeMojave < Formula
       # Even when suffixes are appended, the info pages conflict when
       # install-info is run.
       "MAKEINFO=missing",
-      "--enable-nls",
+      "--disable-nls",
       "--enable-multilib",
     ]
 
