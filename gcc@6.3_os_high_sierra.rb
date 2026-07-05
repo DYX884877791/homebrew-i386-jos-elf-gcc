@@ -194,3 +194,20 @@ class GccAT63OsHighSierra < Formula
     end
   end
 end
+
+
+__END__
+diff --git a/gcc/config/darwin-driver.c b/gcc/config/darwin-driver.c
+--- a/gcc/config/darwin-driver.c	(revision 00861bb342f3289f8809a523aed1dd20f2371c8e)
++++ b/gcc/config/darwin-driver.c	(revision 86f9b2c8c6cb8bf9b8930ba005fbd1b22a4d0d0f)
+@@ -299,10 +299,10 @@
+  if (vers_string != NULL)
+    {
+      char *asm_major = NULL;
+      char *first_period = strchr(vers_string, '.');
+      if (first_period != NULL)
+	{
+	  char *second_period = strchr(first_period+1, '.');
+	  if (second_period  != NULL)
+	    asm_major = xstrndup (vers_string, second_period-vers_string);
+	  else
