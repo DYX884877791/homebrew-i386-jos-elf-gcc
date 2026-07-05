@@ -114,8 +114,8 @@ class GccAT49OsGeMojave < Formula
       # Even when suffixes are appended, the info pages conflict when
       # install-info is run.
       "MAKEINFO=missing",
-      "--disable-nls",
-      "--disable-multilib",
+      "--enable-nls",
+      "--enable-multilib",
     ]
 
     # Ensure correct install names when linking against libgcc_s;
@@ -192,7 +192,7 @@ class GccAT49OsGeMojave < Formula
       # ${BUILD}/gcc/xgcc -B${BUILD}/gcc demo.c
       # 如果你确实想要安装， make install 就可以了。
       system "../configure", *args
-      system "make", "V=1", "bootstrap"
+      system "make", "V=1"
 
       # At this point `make check` could be invoked to run the testsuite. The
       # deja-gnu and autogen formulae must be installed in order to do this.
