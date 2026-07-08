@@ -4,7 +4,7 @@ class PplAT011Jos < Formula
   # Track gcc infrastructure releases.
   url "http://bugseng.com/products/ppl/download/ftp/releases/0.11/ppl-0.11.tar.gz"
   mirror "ftp://gcc.gnu.org/pub/gcc/infrastructure/ppl-0.11.tar.gz"
-  sha256 "3453064ac192e095598576c5b59ecd81a26b268c597c53df05f18921a4f21c77"
+  sha256 "d27eed0b2b49c838e5d0597b579e46d2155fb6d1547eac8ae62a9a1c4d87e678"
   revision 1
 
   bottle do
