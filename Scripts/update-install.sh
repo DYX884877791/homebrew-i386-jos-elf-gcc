@@ -10,7 +10,8 @@
 set -e  # 遇到错误立即退出
 
 # 关闭 Homebrew 自动更新
-export HOMEBREW_NO_AUTO_UPDATE=true
+export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_GITHUB_API=1
 
 # 获取脚本绝对路径（跨平台）
 get_script_path() {
