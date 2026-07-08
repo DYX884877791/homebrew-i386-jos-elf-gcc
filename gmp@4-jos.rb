@@ -29,14 +29,8 @@ class GmpAT4Jos < Formula
   def install
     args = ["--prefix=#{prefix}", "--enable-cxx"]
 
-    # Build 32-bit where appropriate, and help configure find 64-bit CPUs
-    if MacOS.prefer_64_bit?
-      ENV.m64
-      args << "--build=x86_64-apple-darwin"
-    else
-      ENV.m32
-      args << "--host=none-apple-darwin"
-    end
+    ENV.m64
+    args << "--build=x86_64-apple-darwin"
 
     system "./configure", *args
     system "make"
