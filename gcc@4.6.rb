@@ -27,11 +27,11 @@ class GccAT46 < Formula
     sha256 "db4966ade190fff4ed39976be8d13e84839098711713eff1d08920d37a58f5ec"
   end
 
-  depends_on "gmp@4"
-  depends_on "libmpc@0.8"
-  depends_on "mpfr@2"
-  depends_on "ppl@0.11"
-  depends_on "cloog@0.15"
+  depends_on "gmp@4-jos"
+  depends_on "libmpc@0.8-jos"
+  depends_on "mpfr@2-jos"
+  depends_on "ppl@0.11-jos"
+  depends_on "cloog@0.15-jos"
 
   # The bottles are built on systems with the CLT installed, and do not work
   # out of the box on Xcode-only systems due to an incorrect sysroot.
@@ -88,11 +88,11 @@ class GccAT46 < Formula
       "--enable-languages=#{languages.join(",")}",
       # Make most executables versioned to avoid conflicts.
       "--program-suffix=-#{version_suffix}",
-      "--with-gmp=#{Formula["gmp@4"].opt_prefix}",
-      "--with-mpfr=#{Formula["mpfr@2"].opt_prefix}",
-      "--with-mpc=#{Formula["libmpc@0.8"].opt_prefix}",
-      "--with-ppl=#{Formula["ppl@0.11"].opt_prefix}",
-      "--with-cloog=#{Formula["cloog@0.15"].opt_prefix}",
+      "--with-gmp=#{Formula["gmp@4-jos"].opt_prefix}",
+      "--with-mpfr=#{Formula["mpfr@2-jos"].opt_prefix}",
+      "--with-mpc=#{Formula["libmpc@0.8-jos"].opt_prefix}",
+      "--with-ppl=#{Formula["ppl@0.11-jos"].opt_prefix}",
+      "--with-cloog=#{Formula["cloog@0.15-jos"].opt_prefix}",
       "--with-system-zlib",
       # This ensures lib, libexec, include are sandboxed so that they
       # don't wander around telling little children there is no Santa
@@ -141,19 +141,7 @@ class GccAT46 < Formula
     Dir.glob(man7/"*.7") { |file| add_suffix file, version_suffix }
     # Even when we disable building info pages some are still installed.
     info.rmtree
-    # Rename java properties
-    if build.with?("java") || build.with?("all-languages")
-      config_files = [
-        "#{lib}/logging.properties",
-        "#{lib}/security/classpath.security",
-        "#{lib}/i386/logging.properties",
-        "#{lib}/i386/security/classpath.security",
-      ]
 
-      config_files.each do |file|
-        add_suffix file, version_suffix if File.exist? file
-      end
-    end
   end
 
   def add_suffix(file, suffix)
