@@ -1,4 +1,4 @@
-class IslJos014 < Formula
+class IslAT014Jos < Formula
   desc "Integer Set Library for the polyhedral model"
   homepage "http://freecode.com/projects/isl"
   # Track gcc infrastructure releases.

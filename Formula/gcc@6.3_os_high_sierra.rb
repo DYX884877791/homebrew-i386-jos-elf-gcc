@@ -28,7 +28,7 @@ class GccAT63OsHighSierra < Formula
   depends_on "gmp"
   depends_on "libmpc-jos"
   depends_on "mpfr"
-  depends_on "isl@014-jos"
+  depends_on "isl@0.14-jos"
 
   fails_with :gcc_4_0
 

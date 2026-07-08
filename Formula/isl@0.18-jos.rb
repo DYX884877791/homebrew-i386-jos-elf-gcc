@@ -1,4 +1,4 @@
-class IslJos018 < Formula
+class IslAT018Jos < Formula
   desc "Integer Set Library for the polyhedral model"
   homepage "https://libisl.sourceforge.io/"
   # NOTE: Always use tarball instead of git tag for stable version.

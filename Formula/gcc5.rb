@@ -38,7 +38,7 @@ class Gcc5 < Formula
   depends_on "gmp"
   depends_on "libmpc"
   depends_on "mpfr"
-  depends_on "isl@014-jos"
+  depends_on "isl@0.14-jos"
   depends_on "ecj" if build.with?("java") || build.with?("all-languages")
 
   if MacOS.version < :leopard
@@ -119,7 +119,7 @@ class Gcc5 < Formula
       "--with-gmp=#{Formula["gmp"].opt_prefix}",
       "--with-mpfr=#{Formula["mpfr"].opt_prefix}",
       "--with-mpc=#{Formula["libmpc"].opt_prefix}",
-      "--with-isl=#{Formula["isl@014-jos"].opt_prefix}",
+      "--with-isl=#{Formula["isl@0.14-jos"].opt_prefix}",
       "--with-system-zlib",
       "--enable-libstdcxx-time=yes",
       "--enable-stage1-checking",
