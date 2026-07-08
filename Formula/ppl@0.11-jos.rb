@@ -16,6 +16,8 @@ class PplAT011Jos < Formula
 
   depends_on "gmp@4-jos"
 
+  patch :DATA
+
   # https://www.cs.unipr.it/mantis/view.php?id=596
   # https://github.com/Homebrew/homebrew/issues/27431
   # Using different patch from upstream bug report to avoid autoreconf.
@@ -23,8 +25,6 @@ class PplAT011Jos < Formula
     url "https://gist.githubusercontent.com/manphiz/9507743/raw/45081e12c2f1faf81e8536f365af05173c6dab5c/patch-ppl-flexible-array-clang_v2.patch"
     sha256 "db8ced5366ec4c3efb6fd20d3b4e440de3f8b9ec1d930a33b6a23d006dc25944"
   end
-
-  patch :DATA
 
   def install
     system "./configure", "--prefix=#{prefix}",
@@ -58,7 +58,7 @@ end
 
 __END__
 --- ppl-0.11.orig/src/OR_Matrix.inlines.hh	2026-07-09 10:00:00.000000000 +0800
-+++ ppl-0.11.orig/src/OR_Matrix.inlines.hh	2026-07-09 10:00:00.000000000 +0800
++++ ppl-0.11/src/OR_Matrix.inlines.hh	2026-07-09 10:00:00.000000000 +0800
 @@ -97,9 +97,9 @@
 
  template <typename T>
@@ -71,3 +71,18 @@ __END__
  #if PPL_OR_MATRIX_EXTRA_DEBUG
    size_ = y.size_;
  #endif
+
+--- ppl-0.11.orig/src/Determinate.inlines.hh	2026-07-09 10:00:00.000000000 +0800
++++ ppl-0.11/src/Determinate.inlines.hh	2026-07-09 10:00:00.000000000 +0800
+@@ -285,9 +285,9 @@
+
+ template <typename PSET>
+ template <typename Binary_Operator_Assign>
+-inline
+-Determinate<PSET>::Binary_Operator_Assign_Lifter<Binary_Operator_Assign>
++inline typename Determinate<PSET>::template Binary_Operator_Assign_Lifter<Binary_Operator_Assign>
+ Determinate<PSET>::lift_op_assign(Binary_Operator_Assign op_assign) {
+   return Binary_Operator_Assign_Lifter<Binary_Operator_Assign>(op_assign);
+ }
+
+ #endif // !defined(PPL_Determinate_inlines_hh)
