@@ -19,7 +19,7 @@ class MpfrAT2Jos < Formula
 
   fails_with :clang do
     build 421
-    cause <<-EOS.undent
+    cause <<~EOS
       clang build 421 segfaults while building in superenv;
       see https://github.com/mxcl/homebrew/issues/15061
     EOS
