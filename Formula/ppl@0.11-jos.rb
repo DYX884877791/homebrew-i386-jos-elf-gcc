@@ -18,6 +18,9 @@ class PplAT011Jos < Formula
 
   patch :DATA
 
+  # 第二个 patch
+  patch :DATA
+
   # https://www.cs.unipr.it/mantis/view.php?id=596
   # https://github.com/Homebrew/homebrew/issues/27431
   # Using different patch from upstream bug report to avoid autoreconf.
@@ -58,7 +61,7 @@ end
 
 __END__
 --- ppl-0.11.orig/src/OR_Matrix.inlines.hh	2026-07-09 10:00:00.000000000 +0800
-+++ ppl-0.11/src/OR_Matrix.inlines.hh	2026-07-09 10:00:00.000000000 +0800
++++ ppl-0.11/src/OR_Matrix.inlines.hh	    2026-07-09 10:00:00.000000000 +0800
 @@ -97,9 +97,9 @@
 
  template <typename T>
@@ -72,15 +75,16 @@ __END__
    size_ = y.size_;
  #endif
 
+
+__END__
 --- ppl-0.11.orig/src/Determinate.inlines.hh	2026-07-09 10:00:00.000000000 +0800
-+++ ppl-0.11/src/Determinate.inlines.hh	2026-07-09 10:00:00.000000000 +0800
++++ ppl-0.11/src/Determinate.inlines.hh	        2026-07-09 10:00:00.000000000 +0800
 @@ -285,9 +285,9 @@
 
  template <typename PSET>
  template <typename Binary_Operator_Assign>
--inline
 -Determinate<PSET>::Binary_Operator_Assign_Lifter<Binary_Operator_Assign>
-+inline typename Determinate<PSET>::template Binary_Operator_Assign_Lifter<Binary_Operator_Assign>
++typename Determinate<PSET>::template Binary_Operator_Assign_Lifter<Binary_Operator_Assign>
  Determinate<PSET>::lift_op_assign(Binary_Operator_Assign op_assign) {
    return Binary_Operator_Assign_Lifter<Binary_Operator_Assign>(op_assign);
  }
