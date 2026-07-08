@@ -24,6 +24,8 @@ class PplAT011Jos < Formula
     sha256 "db8ced5366ec4c3efb6fd20d3b4e440de3f8b9ec1d930a33b6a23d006dc25944"
   end
 
+  patch :DATA
+
   def install
     system "./configure", "--prefix=#{prefix}",
                           "--disable-dependency-tracking",
@@ -53,3 +55,19 @@ class PplAT011Jos < Formula
     system "./test"
   end
 end
+
+__END__
+--- ppl-0.11.orig/src/OR_Matrix.inlines.hh	2026-07-09 10:00:00.000000000 +0800
++++ ppl-0.11.orig/src/OR_Matrix.inlines.hh	2026-07-09 10:00:00.000000000 +0800
+@@ -97,9 +97,9 @@
+
+ template <typename T>
+ template <typename U>
+-inline OR_Matrix<T>::Pseudo_Row<U>&
+-OR_Matrix<T>::Pseudo_Row<U>::operator=(const Pseudo_Row& y) {
++inline typename OR_Matrix<T>::template Pseudo_Row<U>&
++OR_Matrix<T>::Pseudo_Row<U>::operator=(const Pseudo_Row<U>& y) {
+   first = y.first;
+ #if PPL_OR_MATRIX_EXTRA_DEBUG
+   size_ = y.size_;
+ #endif
