@@ -1,1 +1,1 @@
-sh update-install.sh gmp@4-jos
+sh update-install.sh binutils-jos

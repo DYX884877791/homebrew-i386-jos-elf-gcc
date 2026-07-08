@@ -5,7 +5,7 @@ class X8664JosElfGcc < Formula
   sha256 "09c4c85cabebb971b1de732a0219609f93fc0af5f86f6e437fd8d7f832f1a351"
 
   depends_on "gmp"
-  depends_on "isl-jos-014"
+  depends_on "isl@014-jos"
   depends_on "libmpc"
   depends_on "mpfr"
   depends_on "x86_64-jos-elf-binutils"
@@ -21,7 +21,7 @@ class X8664JosElfGcc < Formula
     args << "--with-gmp=#{Formula["gmp"].opt_prefix}"
     args << "--with-mpfr=#{Formula["mpfr"].opt_prefix}"
     args << "--with-mpc=#{Formula["libmpc"].opt_prefix}"
-    args << "--with-isl=#{Formula["isl-jos-018"].opt_prefix}"
+    args << "--with-isl=#{Formula["isl@018-jos"].opt_prefix}"
     args << "--with-ld=#{Formula["x86_64-jos-elf-binutils"].opt_bin/'x86_64-jos-elf-ld'}"
     args << "--with-as=#{Formula["x86_64-jos-elf-binutils"].opt_bin/'x86_64-jos-elf-as'}"
 
