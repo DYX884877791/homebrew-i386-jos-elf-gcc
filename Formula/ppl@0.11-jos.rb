@@ -75,18 +75,18 @@ __END__
    size_ = y.size_;
  #endif
 
-
 __END__
 --- ppl-0.11.orig/src/Determinate.inlines.hh	2026-07-09 10:00:00.000000000 +0800
 +++ ppl-0.11/src/Determinate.inlines.hh	        2026-07-09 10:00:00.000000000 +0800
-@@ -285,9 +285,9 @@
+@@ -285,10 +285,10 @@
 
  template <typename PSET>
  template <typename Binary_Operator_Assign>
+ inline
 -Determinate<PSET>::Binary_Operator_Assign_Lifter<Binary_Operator_Assign>
 +typename Determinate<PSET>::template Binary_Operator_Assign_Lifter<Binary_Operator_Assign>
  Determinate<PSET>::lift_op_assign(Binary_Operator_Assign op_assign) {
    return Binary_Operator_Assign_Lifter<Binary_Operator_Assign>(op_assign);
  }
 
- #endif // !defined(PPL_Determinate_inlines_hh)
+ } // namespace Parma_Polyhedra_Library
