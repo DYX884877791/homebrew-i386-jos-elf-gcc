@@ -1,0 +1,21 @@
+diff -urN ppl-0.11.orig/configure ppl-0.11/configure
+--- ppl-0.11.orig/configure	2010-08-02 13:21:43.000000000 -0700
++++ ppl-0.11/configure	2014-03-12 07:11:03.000000000 -0700
+@@ -9134,6 +9134,8 @@
+   A()
+     : i(0), b(false) {
+   }
++
++  ~A() {}
+ };
+ 
+ class B {
+@@ -9193,6 +9195,8 @@
+   A()
+     : i(0), b(false) {
+   }
++
++  ~A() {}
+ };
+ 
+ class B {
