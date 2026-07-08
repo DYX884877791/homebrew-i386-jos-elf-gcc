@@ -1,1 +1,1 @@
-sh tap-update-install.sh gcc@4.9_os_ge_mojave
+sh tap-update-install.sh gcc@4.6
