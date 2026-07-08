@@ -189,7 +189,7 @@ if brew list -v -d "$TAP_REF" &>/dev/null; then
     # brew upgrade "$TAP_REF"
     exit 1
 else
-    echo "📦 即将安装 ${TAP_REF} Command is: brew install -v -d ${TAP_REF｝"
+    echo "📦 即将安装 $TAP_REF Command is: brew install -v -d $TAP_REF"
     brew install -v -d "$TAP_REF"
 fi
 
