@@ -184,6 +184,9 @@ if [ "$DRY_RUN" = false ]; then
     if brew info -v -d "$TAP_REF" &>/dev/null; then
         echo "📦 找到 Formula：$TAP_REF"
     else
+        echo "📦 执行 brew info -v -d ${TAP_REF}，结果如下："
+        brew info -v -d "$TAP_REF"
+        echo ""
         echo "❌ 错误：Formula '$TAP_REF' 不存在"
         echo "请检查包名是否正确，或确认该 Formula 是否在 Tap 中。"
         echo ""
