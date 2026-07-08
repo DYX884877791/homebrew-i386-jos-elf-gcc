@@ -11,9 +11,9 @@ class GmpAT4Jos < Formula
   bottle do
     cellar :any
     rebuild 1
-    sha256 :sierra:         "ffe0f83f33aa04955e44436faa88c7a0779469dd08017e4e29359992f0d38639"
-    sha256 :el_capitan:     "dd54633274e190e6c9ab087a0288496ba004c567b4e9042460e22cf89f9da47a"
-    sha256 :yosemite:       "43cfbad47c614698d833e285546e18d05ebd71ebc8ce1227f580b189be2ed05b"
+    sha256 sierra:         "ffe0f83f33aa04955e44436faa88c7a0779469dd08017e4e29359992f0d38639"
+    sha256 el_capitan:     "dd54633274e190e6c9ab087a0288496ba004c567b4e9042460e22cf89f9da47a"
+    sha256 yosemite:       "43cfbad47c614698d833e285546e18d05ebd71ebc8ce1227f580b189be2ed05b"
   end
 
   keg_only :versioned_formula
