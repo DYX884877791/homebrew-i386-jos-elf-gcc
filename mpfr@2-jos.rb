@@ -7,11 +7,10 @@ class MpfrAT2Jos < Formula
   sha256 "c7e75a08a8d49d2082e4caee1591a05d11b9d5627514e678f02d66a124bcf2ba"
 
   bottle do
-    cellar :any
     rebuild 1
-    sha256 sierra:          "338b557f978df323497c4b56ce90fb623817e51d312c474220029a9ddd42ccc9"
-    sha256 el_capitan:      "999668c3a0a71ed8c4f4a7b50a5c2b242ba488b565702e5fcea42a113a553210"
-    sha256 yosemite:        "f923e8b5a61e736aac64b98c54881e6d336c286b456c78932681c3238c5b3751"
+    sha256 cellar: :any,    sierra:          "338b557f978df323497c4b56ce90fb623817e51d312c474220029a9ddd42ccc9"
+    sha256 cellar: :any,    el_capitan:      "999668c3a0a71ed8c4f4a7b50a5c2b242ba488b565702e5fcea42a113a553210"
+    sha256 cellar: :any,    yosemite:        "f923e8b5a61e736aac64b98c54881e6d336c286b456c78932681c3238c5b3751"
   end
 
   keg_only :versioned_formula

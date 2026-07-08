@@ -6,11 +6,10 @@ class CloogAT015Jos < Formula
   sha256 "7cd634d0b2b401b04096b545915ac67f883556e9a524e8e803a6bf6217a84d5f"
 
   bottle do
-    cellar :any
     rebuild 1
-    sha256 sierra:     "44c06713c26b42ddc9cf13ec6a3d29181210dcc8d60c80e10e31415c022e1bf6"
-    sha256 el_capitan: "a81e2487e340bec8b5fcc1624f10f1786cdf046900cb433c51a728971e820342"
-    sha256 yosemite:   "6d542434511b3a90639672f3cd58e5495b5304516c7cf46c2fbf7483ad9494d8"
+    sha256 cellar: :any,    sierra:     "44c06713c26b42ddc9cf13ec6a3d29181210dcc8d60c80e10e31415c022e1bf6"
+    sha256 cellar: :any,    el_capitan: "a81e2487e340bec8b5fcc1624f10f1786cdf046900cb433c51a728971e820342"
+    sha256 cellar: :any,    yosemite:   "6d542434511b3a90639672f3cd58e5495b5304516c7cf46c2fbf7483ad9494d8"
   end
 
   keg_only :versioned_formula
