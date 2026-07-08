@@ -1,1 +1,1 @@
-sh tap-update-install.sh gcc@4.6
+sh tap-update-install.sh gmp@4-jos

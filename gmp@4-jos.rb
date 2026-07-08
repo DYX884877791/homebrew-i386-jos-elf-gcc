@@ -29,7 +29,6 @@ class GmpAT4Jos < Formula
   def install
     args = ["--prefix=#{prefix}", "--enable-cxx"]
 
-    ENV.m64
     args << "--build=x86_64-apple-darwin"
 
     system "./configure", *args
