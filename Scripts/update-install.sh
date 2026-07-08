@@ -176,7 +176,7 @@ else
 fi
 
 # 构造完整的 Tap 引用：$user/$tap/Formula/$package
-TAP_REF="${USER_NAME_LOWER}/${TAP_NAME}/Formula/${PACKAGE_NAME}"
+TAP_REF="${USER_NAME_LOWER}/${TAP_NAME}/formula/${PACKAGE_NAME}"
 
 # 检查 Formula 是否存在
 if [ "$DRY_RUN" = false ]; then
