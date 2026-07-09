@@ -64,17 +64,8 @@ class GccAT43 < Formula
     sha256 "9c5f6fd30d089e97e0364af322272bb06f3d107f357d2b621503ebfbbb4a5af7"
   end
 
-  # Fix texinfo5 fix
-  patch :p0 do
-    url "https://trac.macports.org/export/110576/trunk/dports/lang/gcc43/files/texinfo5.patch"
-    sha256 "9c5f6fd30d089e97e0364af322272bb06f3d107f357d2b621503ebfbbb4a5af7"
-  end
-
-  # Fix gcc texi fix
-  patch :p0 do
-    url "https://trac.macports.org/export/110576/trunk/dports/lang/gcc43/files/patch-gcc-texi.diff"
-    sha256 "9c5f6fd30d089e97e0364af322272bb06f3d107f357d2b621503ebfbbb4a5af7"
-  end
+  # Fix texinfo related issue
+  patch :p0, :DATA
 
   fails_with :llvm
 
@@ -197,3 +188,101 @@ class GccAT43 < Formula
     assert_equal "Hello, world!\n", `./hello-c`
   end
 end
+
+__END__
+Index: gcc/doc/cppopts.texi
+===================================================================
+--- gcc/doc/cppopts.texi.orig
++++ gcc/doc/cppopts.texi
+@@ -754,7 +754,7 @@ Replacement:      [    ]    @{    @}
+ Enable special code to work around file systems which only permit very
+ short file names, such as MS-DOS@.
+
+-@itemx --help
++@item --help
+ @itemx --target-help
+ @opindex help
+ @opindex target-help
+Index: gcc/doc/invoke.texi
+===================================================================
+--- gcc/doc/invoke.texi.orig
++++ gcc/doc/invoke.texi
+@@ -958,7 +958,7 @@ instantiation), or a library unit renami
+ generic, or subprogram renaming declaration).  Such files are also
+ called @dfn{specs}.
+
+-@itemx @var{file}.adb
++@item @var{file}.adb
+ Ada source code file containing a library unit body (a subprogram or
+ package body).  Such files are also called @dfn{bodies}.
+
+@@ -8571,7 +8571,7 @@ assembly code.  Permissible names are: @
+ @samp{cortex-a8}, @samp{cortex-r4}, @samp{cortex-m3},
+ @samp{xscale}, @samp{iwmmxt}, @samp{ep9312}.
+
+-@itemx -mtune=@var{name}
++@item -mtune=@var{name}
+ @opindex mtune
+ This option is very similar to the @option{-mcpu=} option, except that
+ instead of specifying the actual target processor type, and hence
+Index: gcc/doc/c-tree.texi
+===================================================================
+--- gcc/doc/c-tree.texi.orig
++++ gcc/doc/c-tree.texi
+@@ -2325,13 +2325,13 @@ generate these expressions anyhow, if it
+ not matter.  The type of the operands and that of the result are
+ always of @code{BOOLEAN_TYPE} or @code{INTEGER_TYPE}.
+
+-@itemx POINTER_PLUS_EXPR
++@item POINTER_PLUS_EXPR
+ This node represents pointer arithmetic.  The first operand is always
+ a pointer/reference type.  The second operand is always an unsigned
+ integer type compatible with sizetype.  This is the only binary
+ arithmetic operand that can operate on pointer types.
+
+-@itemx PLUS_EXPR
++@item PLUS_EXPR
+ @itemx MINUS_EXPR
+ @itemx MULT_EXPR
+ These nodes represent various binary arithmetic operations.
+Index: gcc/doc/extend.texi
+===================================================================
+--- gcc/doc/extend.texi.orig
++++ gcc/doc/extend.texi
+@@ -4231,6 +4231,8 @@ and caught in another, the class must ha
+ Otherwise the two shared objects will be unable to use the same
+ typeinfo node and exception handling will break.
+
++@end table
++
+ @subsection ARM Type Attributes
+
+ On those ARM targets that support @code{dllimport} (such as Symbian
+@@ -4260,6 +4262,8 @@ most Symbian OS code uses @code{__declsp
+ Two attributes are currently defined for i386 configurations:
+ @code{ms_struct} and @code{gcc_struct}
+
++@table @code
++
+ @item ms_struct
+ @itemx gcc_struct
+ @cindex @code{ms_struct}
+Index: gcc/doc/gcc.texi
+===================================================================
+--- gcc/doc/gcc.texi.old	2008-04-01 20:49:36.000000000 +0200
++++ gcc/doc/gcc.texi	2017-09-18 08:52:36.000000000 +0200
+@@ -84,11 +84,11 @@ This file documents the use of the GNU c
+ Published by:
+ @multitable @columnfractions 0.5 0.5
+ @item GNU Press
+-@tab Website: www.gnupress.org
++@tab Website: @uref{http://www.gnupress.org}
+ @item a division of the
+-@tab General: @tex press@@gnu.org @end tex
++@tab General: @email{press@@gnu.org}
+ @item Free Software Foundation
+-@tab Orders:  @tex sales@@gnu.org @end tex
++@tab Orders:  @email{sales@@gnu.org}
+ @item 51 Franklin Street, Fifth Floor
+ @tab Tel 617-542-5942
+ @item Boston, MA 02110-1301 USA
