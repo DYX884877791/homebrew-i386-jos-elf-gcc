@@ -122,15 +122,15 @@ class GccAT43 < Formula
       system "../configure", *args
 
       # Flags for Clang compatibility
-      make_flags = 'BOOT_CFLAGS="-D_FORTIFY_SOURCE=0" STAGE1_CFLAGS="-std=gnu89 -D_FORTIFY_SOURCE=0 -fkeep-inline-functions"'
+      make_flags = 'BOOT_CFLAGS="$BOOT_CFLAGS -D_FORTIFY_SOURCE=0" STAGE1_CFLAGS="$STAGE1_CFLAGS -std=gnu89 -D_FORTIFY_SOURCE=0 -fkeep-inline-functions"'
 
       if build.with? "profiled-build"
         # Takes longer to build, may bug out. Provided for those who want to
         # optimise all the way to 11.
-        system "make", "V=1", make_flags, "profiledbootstrap"
+        system "make V=1 #{make_flags} profiledbootstrap"
       else
         system "echo", make_flags
-        system "make", "V=1", make_flags, "bootstrap"
+        system "make V=1 #{make_flags} bootstrap"
       end
 
       # At this point `make check` could be invoked to run the testsuite. The
