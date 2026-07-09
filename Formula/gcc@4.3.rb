@@ -127,9 +127,9 @@ class GccAT43 < Formula
       if build.with? "profiled-build"
         # Takes longer to build, may bug out. Provided for those who want to
         # optimise all the way to 11.
-        system "make", make_flags, "profiledbootstrap"
+        system "make", "V=1", make_flags, "profiledbootstrap"
       else
-        system "make", make_flags, "bootstrap"
+        system "make", "V=1", make_flags, "bootstrap"
       end
 
       # At this point `make check` could be invoked to run the testsuite. The
