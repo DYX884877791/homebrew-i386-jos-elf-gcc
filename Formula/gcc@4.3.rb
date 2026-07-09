@@ -92,7 +92,7 @@ class GccAT43 < Formula
       "--enable-languages=#{languages.join(",")}",
       # Make most executables versioned to avoid conflicts.
       "--program-suffix=-#{version_suffix}",
-      "--with-gmp=#{Formula["gmp4@-jos"].opt_prefix}",
+      "--with-gmp=#{Formula["gmp@4-jos"].opt_prefix}",
       "--with-mpfr=#{Formula["mpfr@2-jos"].opt_prefix}",
       "--with-system-zlib",
       # This ensures lib, libexec, include are sandboxed so that they
