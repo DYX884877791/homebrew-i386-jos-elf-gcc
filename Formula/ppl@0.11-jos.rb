@@ -17,7 +17,6 @@ class PplAT011Jos < Formula
   depends_on "gmp@4-jos"
 
   patch :DATA
-  patch :DATA
 
   # https://www.cs.unipr.it/mantis/view.php?id=596
   # https://github.com/Homebrew/homebrew/issues/27431
@@ -58,7 +57,6 @@ class PplAT011Jos < Formula
 end
 
 __END__
-diff -git ppl-0.11.orig/src/OR_Matrix.inlines.hh ppl-0.11/src/OR_Matrix.inlines.hh
 --- ppl-0.11.orig/src/OR_Matrix.inlines.hh	2026-07-09 10:00:00.000000000 +0800
 +++ ppl-0.11/src/OR_Matrix.inlines.hh	    2026-07-09 10:00:00.000000000 +0800
 @@ -97,9 +97,9 @@
@@ -73,9 +71,6 @@ diff -git ppl-0.11.orig/src/OR_Matrix.inlines.hh ppl-0.11/src/OR_Matrix.inlines.
  #if PPL_OR_MATRIX_EXTRA_DEBUG
    size_ = y.size_;
  #endif
-
-__END__
-diff --git ppl-0.11.orig/src/Determinate.inlines.hh ppl-0.11/src/Determinate.inlines.hh
 --- ppl-0.11.orig/src/Determinate.inlines.hh	2026-07-09 10:00:00.000000000 +0800
 +++ ppl-0.11/src/Determinate.inlines.hh	        2026-07-09 10:00:00.000000000 +0800
 @@ -285,10 +285,10 @@
