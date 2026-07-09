@@ -1,7 +1,20 @@
-# https://github.com/jeremyhu/macports-ports/tree/master/lang/gcc43
+# https://github.com/paulirish/homebrew-versions-1/blob/master/gcc43.rb
 class GccAT43 < Formula
   def arch
-    "i686"
+    "x86_64"
+    # if Hardware::CPU.type == :intel
+    #   if MacOS.prefer_64_bit?
+    #     "x86_64"
+    #   else
+    #     "i686"
+    #   end
+    # elsif Hardware::CPU.type == :ppc
+    #   if MacOS.prefer_64_bit?
+    #     "powerpc64"
+    #   else
+    #     "powerpc"
+    #   end
+    # end
   end
 
   def osmajor
@@ -9,30 +22,49 @@ class GccAT43 < Formula
   end
 
   desc "GNU compiler collection"
-  homepage "https://gcc.gnu.org/"
-  url "https://ftp.gnu.org/gnu/gcc/gcc-4.3.6/gcc-4.3.6.tar.bz2"
-  mirror "https://ftpmirror.gnu.org/gcc/gcc-4.3.6/gcc-4.3.6.tar.bz2"
+  homepage "https://gcc.gnu.org"
+  url "http://ftpmirror.gnu.org/gcc/gcc-4.3.6/gcc-4.3.6.tar.bz2"
+  mirror "https://ftp.gnu.org/gnu/gcc/gcc-4.3.6/gcc-4.3.6.tar.bz2"
   sha256 "f3765cd4dcceb4d42d46f0d53471d7cedbad50f2112f0312c1dcc9c41eea9810"
-  revision 2
 
-  bottle do
-    sha256 sierra:      "08fa2595627a85927e6cfd3eeb89af93e4f41598cda83ee28b5b213afa72b0c5"
-    sha256 el_capitan:  "f423fb652caf588aee4e9b4b9936cd7fa203d4cc3e61175a5b5e93163d0f80bc"
-    sha256 yosemite:    "f60768524f18e5d070469a736ce439f965eebbf76089913fd6881b4c1d779e78"
-  end
-
-  # Fixes build with Xcode 7.
-  # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=66523
-  # patch do
-  #   url "https://gcc.gnu.org/bugzilla/attachment.cgi?id=35773"
-  #   sha256 "db4966ade190fff4ed39976be8d13e84839098711713eff1d08920d37a58f5ec"
+  # bottle do
+  #   sha256 "8bf79083ea4ad049f9c11a0bb2b46de64e54e9ae064c280e9af4b1cfdf44c912" => :mavericks
+  #   sha256 "99ea8382997d8c0d67a950d5fe26b79b18ec56dc359eb8ef3d0f16bbcb77d3d5" => :mountain_lion
   # end
 
+  option "with-profiled-build", "Make use of profile guided optimization when bootstrapping GCC"
+
+  deprecated_option "enable-profiled-build" => "with-profiled-build"
+
+  # depends_on MaximumMacOSRequirement => :mavericks
   depends_on "gmp@4-jos"
-  depends_on "libmpc@0.8-jos"
   depends_on "mpfr@2-jos"
-  depends_on "ppl@0.11-jos"
-  depends_on "cloog@0.15-jos"
+
+  # Fix building on darwin10
+  patch :p0 do
+    url "https://trac.macports.org/export/110576/trunk/dports/lang/gcc43/files/darwin10.diff"
+    sha256 "df1019b634f4e1b28c8a62f98374a1acc67e4540c65372fb87e84914d56c6daf"
+  end
+
+  # Fix multilib
+  patch :p0 do
+    url "https://trac.macports.org/export/110576/trunk/dports/lang/gcc43/files/i386_multilib.diff"
+    sha256 "e5e94df259db4cc5c14a61f2553fc1a496052cbd306d23ba95dccf9f01517795"
+  end
+
+  # Build fix for Snow Leopard
+  patch :p0 do
+    url "https://trac.macports.org/export/110576/trunk/dports/lang/gcc43/files/Make-lang.in.diff"
+    sha256 "3e4e860b1a718fc43005681025448f7f6fd820f892a20419a723b887c588075e"
+  end
+
+  # Fix libffi fix for ppc
+  patch :p0 do
+    url "https://trac.macports.org/export/110576/trunk/dports/lang/gcc43/files/ppc_fde_encoding.diff"
+    sha256 "9c5f6fd30d089e97e0364af322272bb06f3d107f357d2b621503ebfbbb4a5af7"
+  end
+
+  fails_with :llvm
 
   # The bottles are built on systems with the CLT installed, and do not work
   # out of the box on Xcode-only systems due to an incorrect sysroot.
@@ -43,78 +75,41 @@ class GccAT43 < Formula
   # GCC bootstraps itself, so it is OK to have an incompatible C++ stdlib
   cxxstdlib_check :skip
 
-  patch :p0 do
-    url "https://raw.githubusercontent.com/macports/macports-ports/refs/heads/master/lang/gcc43/files/darwin10.diff"
-    sha256 "df1019b634f4e1b28c8a62f98374a1acc67e4540c65372fb87e84914d56c6daf"
-  end
-  #
-  patch :p0 do
-    url "https://raw.githubusercontent.com/macports/macports-ports/refs/heads/master/lang/gcc43/files/i386_multilib.diff"
-    sha256 "e5e94df259db4cc5c14a61f2553fc1a496052cbd306d23ba95dccf9f01517795"
-  end
-  #
-  # # Don't check Darwin kernel version (GCC PR target/61407
-  # # <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=61407>).
-  # patch :p0 do
-  #   url "https://raw.githubusercontent.com/macports/macports-ports/70b8c296e68e90d13e589c9d1ffae73f52484a3a/lang/gcc46/files/remove-kernel-version-check.patch"
-  #   sha256 "7f23c4e98b3a673a9d0fbbe1636e72e210d4739f6f0df9ffe45f59df8ef578eb"
-  # end
-  #
-  # # Handle OS X deployment targets correctly (GCC PR target/63810
-  # # <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=63810>).
-  # patch :p0 do
-  #   url "https://raw.githubusercontent.com/macports/macports-ports/70b8c296e68e90d13e589c9d1ffae73f52484a3a/lang/gcc46/files/macosx-version-min.patch"
-  #   sha256 "d8ad7c90e9de6a6288310ffe12498747da8db4c703317362e06c8298af7066ef"
-  # end
-  #
-  # # Don't link with "-flat_namespace -undefined suppress" on Yosemite and
-  # # later (#45483).
-  # patch :p0 do
-  #   url "https://raw.githubusercontent.com/macports/macports-ports/77a7df3e41b6fac5c94934329cedb2fee8830344/lang/gcc46/files/yosemite-libtool.patch"
-  #   sha256 "9fdcc58d6303e6c649e745f9dece182244874d40cbaf743cd8b5f8ecb0e72b5c"
-  # end
-
   def install
     # GCC will suffer build errors if forced to use a particular linker.
     ENV.delete "LD"
 
     # C, C++, ObjC compilers are always built
-    languages = %w[c c++]
+    languages = %w[c c++ objc obj-c++]
 
     version_suffix = version.to_s.slice(/\d\.\d/)
 
     args = [
       "--build=#{arch}-apple-darwin#{osmajor}",
       "--prefix=#{prefix}",
+      "--mandir=#{man}",
+      "--infodir=#{info}",
       "--enable-languages=#{languages.join(",")}",
       # Make most executables versioned to avoid conflicts.
       "--program-suffix=-#{version_suffix}",
-      "--with-gmp=#{Formula["gmp@4-jos"].opt_prefix}",
+      "--with-gmp=#{Formula["gmp4@-jos"].opt_prefix}",
       "--with-mpfr=#{Formula["mpfr@2-jos"].opt_prefix}",
-      "--with-mpc=#{Formula["libmpc@0.8-jos"].opt_prefix}",
-      "--with-ppl=#{Formula["ppl@0.11-jos"].opt_prefix}",
-      "--with-cloog=#{Formula["cloog@0.15-jos"].opt_prefix}",
       "--with-system-zlib",
       # This ensures lib, libexec, include are sandboxed so that they
       # don't wander around telling little children there is no Santa
       # Claus.
       "--enable-version-specific-runtime-libs",
-      "--enable-libstdcxx-time=yes",
       "--enable-stage1-checking",
       "--enable-checking=release",
-      "--enable-lto",
-      "--enable-plugin",
+      "--enable-multilib",
       # A no-op unless --HEAD is built because in head warnings will
       # raise errors. But still a good idea to include.
       "--disable-werror",
-      "--with-pkgversion=Homebrew GCC #{pkg_version} #{build.used_options*" "}".strip,
-      "--with-bugurl=https://github.com/Homebrew/homebrew-core/issues",
-      # Even when suffixes are appended, the info pages conflict when
-      # install-info is run.
-      "MAKEINFO=missing",
+      "--with-pkgversion=Homebrew #{name} #{pkg_version} #{build.used_options*" "}".strip,
+      "--with-bugurl=https://github.com/Homebrew/homebrew-versions/issues",
     ]
 
-    args << "--enable-multilib"
+    args << "--disable-nls"
 
     mkdir "build" do
       unless MacOS::CLT.installed?
@@ -126,10 +121,19 @@ class GccAT43 < Formula
 
       system "../configure", *args
 
-      system "make", "bootstrap"
+      # Flags for Clang compatibility
+      make_flags = 'BOOT_CFLAGS="$BOOT_CFLAGS -D_FORTIFY_SOURCE=0" STAGE1_CFLAGS="$STAGE1_CFLAGS -std=gnu89 -D_FORTIFY_SOURCE=0 -fkeep-inline-functions"'
+
+      if build.with? "profiled-build"
+        # Takes longer to build, may bug out. Provided for those who want to
+        # optimise all the way to 11.
+        system "make", make_flags, "profiledbootstrap"
+      else
+        system "make", make_flags, "bootstrap"
+      end
 
       # At this point `make check` could be invoked to run the testsuite. The
-      # deja-gnu and autogen formulae must be installed in order to do this.
+      # deja-gnu formula must be installed in order to do this.
       system "make", "install"
     end
 
@@ -140,9 +144,24 @@ class GccAT43 < Formula
     Dir.glob(prefix/"**/libiberty.*") { |file| add_suffix file, version_suffix }
     # Rename man7.
     Dir.glob(man7/"*.7") { |file| add_suffix file, version_suffix }
-    # Even when we disable building info pages some are still installed.
+
+    # Even when suffixes are appended, the info pages conflict when
+    # install-info is run. Fix this.
     info.rmtree
 
+    # Rename java properties
+    if build.with?("java") || build.with?("all-languages")
+      config_files = [
+        "#{lib}/logging.properties",
+        "#{lib}/security/classpath.security",
+        "#{lib}/i386/logging.properties",
+        "#{lib}/i386/security/classpath.security",
+      ]
+
+      config_files.each do |file|
+        add_suffix file, version_suffix if File.exist? file
+      end
+    end
   end
 
   def add_suffix(file, suffix)
