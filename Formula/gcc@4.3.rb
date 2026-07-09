@@ -64,6 +64,18 @@ class GccAT43 < Formula
     sha256 "9c5f6fd30d089e97e0364af322272bb06f3d107f357d2b621503ebfbbb4a5af7"
   end
 
+  # Fix texinfo5 fix
+  patch :p0 do
+    url "https://trac.macports.org/export/110576/trunk/dports/lang/gcc43/files/texinfo5.patch"
+    sha256 "9c5f6fd30d089e97e0364af322272bb06f3d107f357d2b621503ebfbbb4a5af7"
+  end
+
+  # Fix gcc texi fix
+  patch :p0 do
+    url "https://trac.macports.org/export/110576/trunk/dports/lang/gcc43/files/patch-gcc-texi.diff"
+    sha256 "9c5f6fd30d089e97e0364af322272bb06f3d107f357d2b621503ebfbbb4a5af7"
+  end
+
   fails_with :llvm
 
   # The bottles are built on systems with the CLT installed, and do not work
