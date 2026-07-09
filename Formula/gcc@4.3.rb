@@ -110,6 +110,9 @@ class GccAT43 < Formula
       "--disable-werror",
       "--with-pkgversion=Homebrew #{name} #{pkg_version} #{build.used_options*" "}".strip,
       "--with-bugurl=https://github.com/Homebrew/homebrew-versions/issues",
+      # Even when suffixes are appended, the info pages conflict when
+      # install-info is run.
+      "MAKEINFO=missing"
     ]
 
     args << "--disable-nls"
