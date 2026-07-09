@@ -129,6 +129,7 @@ class GccAT43 < Formula
         # optimise all the way to 11.
         system "make", "V=1", make_flags, "profiledbootstrap"
       else
+        system "echo", make_flags
         system "make", "V=1", make_flags, "bootstrap"
       end
 
