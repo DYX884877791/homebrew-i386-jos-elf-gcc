@@ -48,10 +48,10 @@ class GccAT43 < Formula
     sha256 "df1019b634f4e1b28c8a62f98374a1acc67e4540c65372fb87e84914d56c6daf"
   end
   #
-  # patch :p0 do
-  #   url "https://raw.githubusercontent.com/macports/macports-ports/580a803587c463c9d5a68bcaa91fa75f384fa268/lang/gcc46/files/enable_libstdcxx_time_yes.patch"
-  #   sha256 "e9e34c10db7849cc2f72e8e8d4d5e9cd1b3a2fe92fe317183fc575286999179f"
-  # end
+  patch :p0 do
+    url "https://raw.githubusercontent.com/macports/macports-ports/refs/heads/master/lang/gcc43/files/i386_multilib.diff"
+    sha256 "e5e94df259db4cc5c14a61f2553fc1a496052cbd306d23ba95dccf9f01517795"
+  end
   #
   # # Don't check Darwin kernel version (GCC PR target/61407
   # # <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=61407>).
