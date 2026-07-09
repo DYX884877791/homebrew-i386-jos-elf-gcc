@@ -16,6 +16,8 @@ class PplAT011Jos < Formula
 
   depends_on "gmp@4-jos"
 
+  # ref：Formula/o/openjdk@8.rb
+  # multiple patches
   patch :DATA
 
   # https://www.cs.unipr.it/mantis/view.php?id=596

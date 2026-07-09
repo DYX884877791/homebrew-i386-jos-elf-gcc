@@ -1,7 +1,6 @@
-# https://github.com/KijijiCA/homebrew-core/blob/5ed21bf15977a02a7bb6ac6b80c38a0c393dbee5/Formula/gcc%404.6.rb#L121
-class GccAT46 < Formula
+class AppleGcc42Jos < Formula
   def arch
-    "x86_64"
+    "i686"
   end
 
   def osmajor
@@ -9,10 +8,11 @@ class GccAT46 < Formula
   end
 
   desc "GNU compiler collection"
-  homepage "https://gcc.gnu.org/"
-  url "https://ftp.gnu.org/gnu/gcc/gcc-4.6.4/gcc-4.6.4.tar.bz2"
-  mirror "https://ftpmirror.gnu.org/gcc/gcc-4.6.4/gcc-4.6.4.tar.bz2"
-  sha256 "35af16afa0b67af9b8eb15cafb76d2bc5f568540552522f5dc2c88dd45d977e8"
+  homepage "http://gcc.gnu.org/"
+  url "https://github.com/apple-oss-distributions/gcc/archive/refs/tags/gcc-5666.3.tar.gz"
+  version "4.2.1-5666.3"
+  sha256 "24a5ff4087d09b1170bc4653c85bf2d8361b2320"
+
   revision 2
 
   bottle do

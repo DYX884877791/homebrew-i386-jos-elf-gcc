@@ -1,7 +1,7 @@
-# https://github.com/KijijiCA/homebrew-core/blob/5ed21bf15977a02a7bb6ac6b80c38a0c393dbee5/Formula/gcc%404.6.rb#L121
-class GccAT46 < Formula
+# https://github.com/jeremyhu/macports-ports/tree/master/lang/gcc43
+class GccAT43 < Formula
   def arch
-    "x86_64"
+    "i686"
   end
 
   def osmajor
@@ -10,9 +10,9 @@ class GccAT46 < Formula
 
   desc "GNU compiler collection"
   homepage "https://gcc.gnu.org/"
-  url "https://ftp.gnu.org/gnu/gcc/gcc-4.6.4/gcc-4.6.4.tar.bz2"
-  mirror "https://ftpmirror.gnu.org/gcc/gcc-4.6.4/gcc-4.6.4.tar.bz2"
-  sha256 "35af16afa0b67af9b8eb15cafb76d2bc5f568540552522f5dc2c88dd45d977e8"
+  url "https://ftp.gnu.org/gnu/gcc/gcc-4.3.6/gcc-4.3.6.tar.bz2"
+  mirror "https://ftpmirror.gnu.org/gcc/gcc-4.3.6/gcc-4.3.6.tar.bz2"
+  sha256 "f3765cd4dcceb4d42d46f0d53471d7cedbad50f2112f0312c1dcc9c41eea9810"
   revision 2
 
   bottle do
@@ -43,43 +43,43 @@ class GccAT46 < Formula
   # GCC bootstraps itself, so it is OK to have an incompatible C++ stdlib
   cxxstdlib_check :skip
 
-  patch :p0 do
-    url "https://raw.githubusercontent.com/macports/macports-ports/05dab25ebcba1614370b589a8cdb7b7d0e341007/lang/gcc46/files/gcc-4.6-cloog_lang_c.patch"
-    sha256 "51e1c5981784b99ac65aed0fc2c50be5a3e023b45cea4e20b308a70f2a0661b4"
-  end
-
-  patch :p0 do
-    url "https://raw.githubusercontent.com/macports/macports-ports/580a803587c463c9d5a68bcaa91fa75f384fa268/lang/gcc46/files/enable_libstdcxx_time_yes.patch"
-    sha256 "e9e34c10db7849cc2f72e8e8d4d5e9cd1b3a2fe92fe317183fc575286999179f"
-  end
-
-  # Don't check Darwin kernel version (GCC PR target/61407
-  # <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=61407>).
-  patch :p0 do
-    url "https://raw.githubusercontent.com/macports/macports-ports/70b8c296e68e90d13e589c9d1ffae73f52484a3a/lang/gcc46/files/remove-kernel-version-check.patch"
-    sha256 "7f23c4e98b3a673a9d0fbbe1636e72e210d4739f6f0df9ffe45f59df8ef578eb"
-  end
-
-  # Handle OS X deployment targets correctly (GCC PR target/63810
-  # <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=63810>).
-  patch :p0 do
-    url "https://raw.githubusercontent.com/macports/macports-ports/70b8c296e68e90d13e589c9d1ffae73f52484a3a/lang/gcc46/files/macosx-version-min.patch"
-    sha256 "d8ad7c90e9de6a6288310ffe12498747da8db4c703317362e06c8298af7066ef"
-  end
-
-  # Don't link with "-flat_namespace -undefined suppress" on Yosemite and
-  # later (#45483).
-  patch :p0 do
-    url "https://raw.githubusercontent.com/macports/macports-ports/77a7df3e41b6fac5c94934329cedb2fee8830344/lang/gcc46/files/yosemite-libtool.patch"
-    sha256 "9fdcc58d6303e6c649e745f9dece182244874d40cbaf743cd8b5f8ecb0e72b5c"
-  end
+  # patch :p0 do
+  #   url "https://raw.githubusercontent.com/macports/macports-ports/05dab25ebcba1614370b589a8cdb7b7d0e341007/lang/gcc46/files/gcc-4.6-cloog_lang_c.patch"
+  #   sha256 "51e1c5981784b99ac65aed0fc2c50be5a3e023b45cea4e20b308a70f2a0661b4"
+  # end
+  #
+  # patch :p0 do
+  #   url "https://raw.githubusercontent.com/macports/macports-ports/580a803587c463c9d5a68bcaa91fa75f384fa268/lang/gcc46/files/enable_libstdcxx_time_yes.patch"
+  #   sha256 "e9e34c10db7849cc2f72e8e8d4d5e9cd1b3a2fe92fe317183fc575286999179f"
+  # end
+  #
+  # # Don't check Darwin kernel version (GCC PR target/61407
+  # # <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=61407>).
+  # patch :p0 do
+  #   url "https://raw.githubusercontent.com/macports/macports-ports/70b8c296e68e90d13e589c9d1ffae73f52484a3a/lang/gcc46/files/remove-kernel-version-check.patch"
+  #   sha256 "7f23c4e98b3a673a9d0fbbe1636e72e210d4739f6f0df9ffe45f59df8ef578eb"
+  # end
+  #
+  # # Handle OS X deployment targets correctly (GCC PR target/63810
+  # # <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=63810>).
+  # patch :p0 do
+  #   url "https://raw.githubusercontent.com/macports/macports-ports/70b8c296e68e90d13e589c9d1ffae73f52484a3a/lang/gcc46/files/macosx-version-min.patch"
+  #   sha256 "d8ad7c90e9de6a6288310ffe12498747da8db4c703317362e06c8298af7066ef"
+  # end
+  #
+  # # Don't link with "-flat_namespace -undefined suppress" on Yosemite and
+  # # later (#45483).
+  # patch :p0 do
+  #   url "https://raw.githubusercontent.com/macports/macports-ports/77a7df3e41b6fac5c94934329cedb2fee8830344/lang/gcc46/files/yosemite-libtool.patch"
+  #   sha256 "9fdcc58d6303e6c649e745f9dece182244874d40cbaf743cd8b5f8ecb0e72b5c"
+  # end
 
   def install
     # GCC will suffer build errors if forced to use a particular linker.
     ENV.delete "LD"
 
     # C, C++, ObjC compilers are always built
-    languages = %w[c c++ objc obj-c++]
+    languages = %w[c c++]
 
     version_suffix = version.to_s.slice(/\d\.\d/)
 
@@ -161,7 +161,7 @@ class GccAT46 < Formula
         return 0;
       }
     EOS
-    system bin/"gcc-4.6", "-o", "hello-c", "hello-c.c"
+    system bin/"gcc-4.3", "-o", "hello-c", "hello-c.c"
     assert_equal "Hello, world!\n", `./hello-c`
   end
 end
