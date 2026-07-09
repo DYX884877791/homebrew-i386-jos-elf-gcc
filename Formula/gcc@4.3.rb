@@ -43,10 +43,10 @@ class GccAT43 < Formula
   # GCC bootstraps itself, so it is OK to have an incompatible C++ stdlib
   cxxstdlib_check :skip
 
-  # patch :p0 do
-  #   url "https://raw.githubusercontent.com/macports/macports-ports/05dab25ebcba1614370b589a8cdb7b7d0e341007/lang/gcc46/files/gcc-4.6-cloog_lang_c.patch"
-  #   sha256 "51e1c5981784b99ac65aed0fc2c50be5a3e023b45cea4e20b308a70f2a0661b4"
-  # end
+  patch :p0 do
+    url "https://raw.githubusercontent.com/macports/macports-ports/refs/heads/master/lang/gcc43/files/darwin10.diff"
+    sha256 "df1019b634f4e1b28c8a62f98374a1acc67e4540c65372fb87e84914d56c6daf"
+  end
   #
   # patch :p0 do
   #   url "https://raw.githubusercontent.com/macports/macports-ports/580a803587c463c9d5a68bcaa91fa75f384fa268/lang/gcc46/files/enable_libstdcxx_time_yes.patch"
