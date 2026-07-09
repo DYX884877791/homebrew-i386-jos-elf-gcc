@@ -17,6 +17,7 @@ class PplAT011Jos < Formula
   depends_on "gmp@4-jos"
 
   patch :DATA
+  patch :DATA
 
   # https://www.cs.unipr.it/mantis/view.php?id=596
   # https://github.com/Homebrew/homebrew/issues/27431
@@ -73,3 +74,19 @@ diff -git ppl-0.11.orig/src/OR_Matrix.inlines.hh ppl-0.11/src/OR_Matrix.inlines.
    size_ = y.size_;
  #endif
 
+__END__
+diff --git ppl-0.11.orig/src/Determinate.inlines.hh ppl-0.11/src/Determinate.inlines.hh
+--- ppl-0.11.orig/src/Determinate.inlines.hh	2026-07-09 10:00:00.000000000 +0800
++++ ppl-0.11/src/Determinate.inlines.hh	        2026-07-09 10:00:00.000000000 +0800
+@@ -285,10 +285,10 @@
+
+ template <typename PSET>
+ template <typename Binary_Operator_Assign>
+ inline
+-Determinate<PSET>::Binary_Operator_Assign_Lifter<Binary_Operator_Assign>
++typename Determinate<PSET>::template Binary_Operator_Assign_Lifter<Binary_Operator_Assign>
+ Determinate<PSET>::lift_op_assign(Binary_Operator_Assign op_assign) {
+   return Binary_Operator_Assign_Lifter<Binary_Operator_Assign>(op_assign);
+ }
+
+ } // namespace Parma_Polyhedra_Library
