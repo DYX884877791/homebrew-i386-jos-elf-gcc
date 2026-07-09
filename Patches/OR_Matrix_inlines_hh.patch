@@ -1,0 +1,15 @@
+diff -git ppl-0.11.orig/src/OR_Matrix.inlines.hh ppl-0.11/src/OR_Matrix.inlines.hh
+--- ppl-0.11.orig/src/OR_Matrix.inlines.hh	2026-07-09 10:00:00.000000000 +0800
++++ ppl-0.11/src/OR_Matrix.inlines.hh	    2026-07-09 10:00:00.000000000 +0800
+@@ -97,9 +97,9 @@
+
+ template <typename T>
+ template <typename U>
+-inline OR_Matrix<T>::Pseudo_Row<U>&
+-OR_Matrix<T>::Pseudo_Row<U>::operator=(const Pseudo_Row& y) {
++inline typename OR_Matrix<T>::template Pseudo_Row<U>&
++OR_Matrix<T>::Pseudo_Row<U>::operator=(const Pseudo_Row<U>& y) {
+   first = y.first;
+ #if PPL_OR_MATRIX_EXTRA_DEBUG
+   size_ = y.size_;
+ #endif
