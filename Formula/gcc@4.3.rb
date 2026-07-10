@@ -83,7 +83,7 @@ class GccAT43 < Formula
     ENV.delete "LD"
 
     # C, C++, ObjC compilers are always built
-    languages = %w[c c++ objc obj-c++]
+    languages = %w[c c++]
 
     version_suffix = version.to_s.slice(/\d\.\d/)
 
@@ -155,20 +155,6 @@ class GccAT43 < Formula
     # Even when suffixes are appended, the info pages conflict when
     # install-info is run. Fix this.
     info.rmtree
-
-    # Rename java properties
-    if build.with?("java") || build.with?("all-languages")
-      config_files = [
-        "#{lib}/logging.properties",
-        "#{lib}/security/classpath.security",
-        "#{lib}/i386/logging.properties",
-        "#{lib}/i386/security/classpath.security",
-      ]
-
-      config_files.each do |file|
-        add_suffix file, version_suffix if File.exist? file
-      end
-    end
   end
 
   def add_suffix(file, suffix)
