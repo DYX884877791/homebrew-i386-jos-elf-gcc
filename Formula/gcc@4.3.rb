@@ -39,7 +39,7 @@ class GccAT43 < Formula
   # depends_on MaximumMacOSRequirement => :mavericks
   depends_on "gmp@4-jos"
   depends_on "mpfr@2-jos"
-  depends_on "libomp@11.0.0-jos"
+  depends_on "libomp@11.0.0-jos" => :build
 
   # Fix building on darwin10
   patch :p0 do
@@ -126,6 +126,8 @@ class GccAT43 < Formula
         args << "--with-sysroot=#{MacOS.sdk_path}"
       end
 
+      ENV.append "CFLAGS", "-I#{Formula["libomp@11.0.0-jos"].opt_include}" if OS.mac?
+      ENV.append "LDFLAGS", "-L#{Formula["libomp@11.0.0-jos"].opt_lib}" if OS.mac?
       system "../configure", *args
 
       # Flags for Clang compatibility
