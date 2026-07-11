@@ -21,7 +21,7 @@ class LibompAT1100Jos < Formula
   #   sha256 "b52917c48ef980351c06a937649d2868529680f901cbf05d5c85acd03c237fee" => :x86_64_linux
   # end
 
-  depends_on "cmake" => :build
+  depends_on "cmake@3.19.2-jos" => :build
 
   # Upstream patch for ARM, accepted, remove in next version
   # https://reviews.llvm.org/D91002
