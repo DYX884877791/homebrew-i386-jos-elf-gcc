@@ -39,6 +39,7 @@ class GccAT43 < Formula
   # depends_on MaximumMacOSRequirement => :mavericks
   depends_on "gmp@4-jos"
   depends_on "mpfr@2-jos"
+  depends_on "libomp@11.0.0-jos"
 
   # Fix building on darwin10
   patch :p0 do
