@@ -131,7 +131,7 @@ class GccAT43 < Formula
       system "../configure", *args
 
       # Flags for Clang compatibility
-      make_flags = 'BOOT_CFLAGS="$BOOT_CFLAGS -D_FORTIFY_SOURCE=0" STAGE1_CFLAGS="$STAGE1_CFLAGS -std=gnu89 -D_FORTIFY_SOURCE=0 -fkeep-inline-functions"'
+      make_flags = 'BOOT_CFLAGS="$BOOT_CFLAGS $CFLAGS -D_FORTIFY_SOURCE=0" BOOT_LDFLAGS="$BOOT_LDFLAGS $LDFLAGS" STAGE1_CFLAGS="$STAGE1_CFLAGS -std=gnu89 -D_FORTIFY_SOURCE=0 -fkeep-inline-functions"'
 
       if build.with? "profiled-build"
         # Takes longer to build, may bug out. Provided for those who want to
