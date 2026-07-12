@@ -15,7 +15,7 @@ class GccAT45 < Formula
 
   # with system ld on Tiger, build fails with countless messages of:
   # "relocation overflow for relocation entry"
-  depends_on :ld64
+  # depends_on :ld64
   depends_on "gmp@4-jos"
   depends_on "libmpc@0.8-jos"
   depends_on "mpfr@2-jos"
