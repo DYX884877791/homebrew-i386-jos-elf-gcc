@@ -11,6 +11,7 @@ class CrosstoolNgAT1210Jos < Formula
   depends_on "wget"
   depends_on "gnu-sed"
   depends_on "gawk"
+  depends_on "ncurses"
   depends_on "gettext"
   depends_on "binutils-jos"
   depends_on "libelf"
@@ -39,7 +40,8 @@ class CrosstoolNgAT1210Jos < Formula
 
     args << "CFLAGS=-std=gnu89"
 
-    ENV.append "LDFLAGS", "-lintl"
+    ENV.append "CPPFLAGS", "-I#{Formula["gettext"].opt_include} -I#{Formula["ncurses"].opt_include}" if OS.mac?
+    ENV.append "LDFLAGS", "-L#{Formula["gettext"].opt_lib} -lintl -L#{Formula["ncurses"].opt_lib}" if OS.mac?
 
     system "./configure", *args
 
