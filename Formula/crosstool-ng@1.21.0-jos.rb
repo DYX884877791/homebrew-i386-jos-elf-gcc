@@ -11,7 +11,6 @@ class CrosstoolNgAT1210Jos < Formula
   depends_on "wget"
   depends_on "gnu-sed"
   depends_on "gawk"
-  depends_on "ncurses"
   depends_on "gettext"
   depends_on "binutils-jos"
   depends_on "libelf"
