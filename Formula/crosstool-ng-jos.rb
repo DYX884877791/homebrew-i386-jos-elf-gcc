@@ -20,7 +20,7 @@ class CrosstoolNgJos < Formula
   depends_on "bash"
   depends_on "binutils-jos"
   depends_on "bison"
-  depends_on "coreutils"
+  depends_on "coreutils-jos"
   depends_on "flex"
   depends_on "gawk"
   depends_on "gettext"
