@@ -58,19 +58,35 @@ class CrosstoolNgAT1210Jos < Formula
 end
 
 __END__
-diff -r kconfig/Makefile.org kconfig/Makefile
-37a38
-> conf: LDFLAGS += -lintl
-44c45,46
-< mconf: LDFLAGS += $(NCURSES_LDFLAGS)
----
-> # mconf: LDFLAGS += $(NCURSES_LDFLAGS)
-> mconf: LDFLAGS += -lintl $(NCURSES_LDFLAGS)
-50,51c52,55
-< $(nconf_OBJ) $(nconf_DEP): CFLAGS += $(INTL_CFLAGS) -I/usr/include/ncurses
-< nconf: LDFLAGS += -lmenu -lpanel -lncurses
----
-> # $(nconf_OBJ) $(nconf_DEP): CFLAGS += $(INTL_CFLAGS) -I/usr/include/ncurses
-> # nconf: LDFLAGS += -lmenu -lpanel -lncurses
-> $(nconf_OBJ) $(nconf_DEP): CFLAGS += -I/usr/include/ncurses/ $(INTL_CFLAGS)
-> nconf: LDFLAGS += -lintl -lmenu -lpanel -lncurses
+diff --git a/Makefile b/Makefile1
+index 3474e5c..74f6b68 100644
+--- a/Makefile
++++ b/Makefile1
+@@ -35,20 +35,24 @@ conf_SRC = conf.c
+ conf_OBJ = $(patsubst %.c,%.o,$(conf_SRC))
+ conf_DEP = $(patsubst %.o,%.dep,$(conf_OBJ))
+ $(conf_OBJ) $(conf_DEP): CFLAGS += $(INTL_CFLAGS)
++conf: LDFLAGS += -lintl
+
+ # What's needed to build 'mconf'
+ mconf_SRC = mconf.c
+ mconf_OBJ = $(patsubst %.c,%.o,$(mconf_SRC))
+ mconf_DEP = $(patsubst %.c,%.dep,$(mconf_SRC))
+ $(mconf_OBJ) $(mconf_DEP): CFLAGS += $(NCURSES_CFLAGS) $(INTL_CFLAGS)
+-mconf: LDFLAGS += $(NCURSES_LDFLAGS)
++# mconf: LDFLAGS += $(NCURSES_LDFLAGS)
++mconf: LDFLAGS += -lintl $(NCURSES_LDFLAGS)
+
+ # What's needed to build 'nconf'
+ nconf_SRC = nconf.c nconf.gui.c
+ nconf_OBJ = $(patsubst %.c,%.o,$(nconf_SRC))
+ nconf_DEP = $(patsubst %.c,%.dep,$(nconf_SRC))
+-$(nconf_OBJ) $(nconf_DEP): CFLAGS += $(INTL_CFLAGS) -I/usr/include/ncurses
+-nconf: LDFLAGS += -lmenu -lpanel -lncurses
++# $(nconf_OBJ) $(nconf_DEP): CFLAGS += $(INTL_CFLAGS) -I/usr/include/ncurses
++# nconf: LDFLAGS += -lmenu -lpanel -lncurses
++$(nconf_OBJ) $(nconf_DEP): CFLAGS += -I/usr/include/ncurses/ $(INTL_CFLAGS)
++nconf: LDFLAGS += -lintl -lmenu -lpanel -lncurses
+
+ # Under Cygwin, we need to auto-import some libs (which ones, exactly?)
+ # for mconf and nconf to lin properly.
