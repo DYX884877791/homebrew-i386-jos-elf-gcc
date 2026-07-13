@@ -11,6 +11,7 @@ class CrosstoolNgAT1210Jos < Formula
   depends_on "wget"
   depends_on "gnu-sed"
   depends_on "gawk"
+  depends_on "gettext"
   depends_on "binutils-jos"
   depends_on "libelf"
   depends_on "grep" => :optional
@@ -37,6 +38,8 @@ class CrosstoolNgAT1210Jos < Formula
     args << "--with-make=#{Formula["make"].opt_bin}/gmake" if build.with? "make"
 
     args << "CFLAGS=-std=gnu89"
+
+    ENV.append "LDFLAGS", "-lintl"
 
     system "./configure", *args
 
