@@ -40,8 +40,8 @@ class CrosstoolNgAT1210Jos < Formula
 
     args << "CFLAGS=-std=gnu89"
 
-    ENV.append "CPPFLAGS", "-I#{Formula["gettext"].opt_include} -I#{Formula["ncurses"].opt_include}" if OS.mac?
-    ENV.append "LDFLAGS", "-L#{Formula["gettext"].opt_lib} -lintl -L#{Formula["ncurses"].opt_lib}" if OS.mac?
+    ENV.append "CPPFLAGS", "-I#{Formula["gettext"].opt_include}" if OS.mac?
+    ENV.append "LDFLAGS", "-L#{Formula["gettext"].opt_lib} -lintl" if OS.mac?
 
     system "./configure", *args
 
