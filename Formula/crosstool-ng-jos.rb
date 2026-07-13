@@ -18,7 +18,7 @@ class CrosstoolNgJos < Formula
   depends_on "autoconf"
   depends_on "automake"
   depends_on "bash"
-  depends_on "binutils"
+  depends_on "binutils-jos"
   depends_on "bison"
   depends_on "coreutils"
   depends_on "flex"
