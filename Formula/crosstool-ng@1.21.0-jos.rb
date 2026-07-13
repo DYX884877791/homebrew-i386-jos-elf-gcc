@@ -1,3 +1,4 @@
+# https://www.cnblogs.com/sky-heaven/p/13508495.html#_label13
 class CrosstoolNgAT1210Jos < Formula
   desc "Tool for building toolchains"
   homepage "http://crosstool-ng.org"
@@ -19,6 +20,8 @@ class CrosstoolNgAT1210Jos < Formula
 
   # Avoid superenv to prevent https://github.com/mxcl/homebrew/pull/10552#issuecomment-9736248
   env :std
+
+  patch :p0, :DATA
 
   def install
     args = ["--prefix=#{prefix}",
@@ -53,3 +56,21 @@ class CrosstoolNgAT1210Jos < Formula
     system "#{bin}/ct-ng", "version"
   end
 end
+
+__END__
+diff -r kconfig/Makefile.org kconfig/Makefile
+37a38
+> conf: LDFLAGS += -lintl
+44c45,46
+< mconf: LDFLAGS += $(NCURSES_LDFLAGS)
+---
+> # mconf: LDFLAGS += $(NCURSES_LDFLAGS)
+> mconf: LDFLAGS += -lintl $(NCURSES_LDFLAGS)
+50,51c52,55
+< $(nconf_OBJ) $(nconf_DEP): CFLAGS += $(INTL_CFLAGS) -I/usr/include/ncurses
+< nconf: LDFLAGS += -lmenu -lpanel -lncurses
+---
+> # $(nconf_OBJ) $(nconf_DEP): CFLAGS += $(INTL_CFLAGS) -I/usr/include/ncurses
+> # nconf: LDFLAGS += -lmenu -lpanel -lncurses
+> $(nconf_OBJ) $(nconf_DEP): CFLAGS += -I/usr/include/ncurses/ $(INTL_CFLAGS)
+> nconf: LDFLAGS += -lintl -lmenu -lpanel -lncurses
