@@ -58,10 +58,10 @@ class CrosstoolNgAT1210Jos < Formula
 end
 
 __END__
-diff --git a/Makefile b/Makefile1
+diff --git kconfig/Makefile.org kconfig/Makefile
 index 3474e5c..74f6b68 100644
---- a/Makefile
-+++ b/Makefile1
+--- kconfig/Makefile.org
++++ kconfig/Makefile
 @@ -35,20 +35,24 @@ conf_SRC = conf.c
  conf_OBJ = $(patsubst %.c,%.o,$(conf_SRC))
  conf_DEP = $(patsubst %.o,%.dep,$(conf_OBJ))
