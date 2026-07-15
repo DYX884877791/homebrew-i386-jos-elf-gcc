@@ -25,7 +25,7 @@ class CrosstoolNgAT1170Jos < Formula
     p << 'http://crosstool-ng.org/download/crosstool-ng/01-fixes/1.17.0/002-scripts_functions_fix_debug_shell.patch'
   end
 
-  patch :p0, :DATA
+  patch :p1, :DATA
 
   def install
     system "./configure", "--prefix=#{prefix}",
