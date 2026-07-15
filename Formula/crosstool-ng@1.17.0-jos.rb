@@ -32,8 +32,7 @@ class CrosstoolNgAT1170Jos < Formula
            "--with-readelf=greadelf",
            "--with-libtool=glibtool",
            "--with-libtoolize=glibtoolize",
-           "--with-install=ginstall",
-           "CFLAGS=-std=gnu89"
+           "--with-install=ginstall"
     # Must be done in two steps
     system "make"
     system "make install"
