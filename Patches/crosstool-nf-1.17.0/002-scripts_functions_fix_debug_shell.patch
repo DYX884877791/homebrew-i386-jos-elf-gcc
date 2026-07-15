@@ -1,0 +1,49 @@
+diff --git a/scripts/functions b/scripts/functions
+--- a/scripts/functions
++++ b/scripts/functions
+@@ -71,16 +71,15 @@
+                                 printf "\nRe-trying last command.\n\n"
+                                 break
+                             fi
+-                            ;;&
++                            ;;
+                         3)  break;;
+-                        *)  printf "\nPlease exit with one of these values:\n"
+-                            printf "    1  fixed, continue with next build command\n"
+-                            if [ -n "${cur_cmd}" ]; then
+-                                printf "    2  repeat this build command\n"
+-                            fi
+-                            printf "    3  abort build\n"
+-                            ;;
+                     esac
++                    printf "\nPlease exit with one of these values:\n"
++                    printf "    1  fixed, continue with next build command\n"
++                    if [ -n "${cur_cmd}" ]; then
++                        printf "    2  repeat this build command\n"
++                    fi
++                    printf "    3  abort build\n"
+                 done
+                 exit $result
+             )
+@@ -88,7 +87,7 @@
+             # Restore the trap handler
+             eval "${old_trap}"
+             case "${result}" in
+-                1)  rm -f "${CT_WORK_DIR}/backtrace"; return;;
++                1)  rm -f "${CT_WORK_DIR}/backtrace"; touch "${CT_BUILD_DIR}/skip"; return;;
+                 2)  rm -f "${CT_WORK_DIR}/backtrace"; touch "${CT_BUILD_DIR}/repeat"; return;;
+                 # 3 is an abort, continue...
+             esac
+@@ -258,7 +257,12 @@
+         "${@}" 2>&1 |CT_DoLog "${level}"
+         ret="${?}"
+         if [ -f "${CT_BUILD_DIR}/repeat" ]; then
++            rm -f "${CT_BUILD_DIR}/repeat"
+             continue
++        elif [ -f "${CT_BUILD_DIR}/skip" ]; then
++            rm -f "${CT_BUILD_DIR}/skip"
++            ret=0
++            break
+         else
+             break
+         fi

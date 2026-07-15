@@ -14,18 +14,7 @@ class CrosstoolNgAT1170Jos < Formula
 
   env :std
 
-  def patches
-    # Fixes clang offsetof compatability. Took better patch from #14547
-    p = [DATA]
-    # The following patches are already upstream.
-    # They can be removed at the next release.
-    p << 'http://crosstool-ng.org/download/crosstool-ng/01-fixes/1.17.0/000-scripts_unquoted_variable_reference_in_glibc_eglibc_sh_common.patch'
-    p << 'http://crosstool-ng.org/download/crosstool-ng/01-fixes/1.17.0/001-scripts_fail_on_in_paths.patch'
-    # The 'case ;;&' construct is a bash4ism. Get rid of it.
-    p << 'http://crosstool-ng.org/download/crosstool-ng/01-fixes/1.17.0/002-scripts_functions_fix_debug_shell.patch'
-  end
-
-  patch :p0, :DATA
+  patch :p1, :DATA
 
   def install
     system "./configure", "--prefix=#{prefix}",
@@ -59,10 +48,10 @@ class CrosstoolNgAT1170Jos < Formula
 end
 
 __END__
-diff --git kconfig/zconf.gperf kconfig/zconf.gperf
+diff --git a/kconfig/zconf.gperf b/kconfig/zconf.gperf
 index c9e690e..21e79e4 100644
---- kconfig/zconf.gperf
-+++ kconfig/zconf.gperf
+--- a/kconfig/zconf.gperf
++++ b/kconfig/zconf.gperf
 @@ -7,6 +7,15 @@
  %pic
  %struct-type
@@ -79,10 +68,10 @@ index c9e690e..21e79e4 100644
  struct kconf_id;
 
  static struct kconf_id *kconf_id_lookup(register const char *str, register unsigned int len);
-diff --git kconfig/Makefile.org kconfig/Makefile
+diff --git a/kconfig/Makefile.org b/kconfig/Makefile
 index 3474e5c..74f6b68 100644
---- kconfig/Makefile.org
-+++ kconfig/Makefile
+--- a/kconfig/Makefile.org
++++ b/kconfig/Makefile
 @@ -35,20 +35,24 @@ conf_SRC = conf.c
  conf_OBJ = $(patsubst %.c,%.o,$(conf_SRC))
  conf_DEP = $(patsubst %.o,%.dep,$(conf_OBJ))
@@ -111,3 +100,64 @@ index 3474e5c..74f6b68 100644
 
  # Under Cygwin, we need to auto-import some libs (which ones, exactly?)
  # for mconf and nconf to lin properly.
+diff --git a/scripts/crosstool-NG.sh.in b/scripts/crosstool-NG.sh.in
+--- a/scripts/crosstool-NG.sh.in
++++ b/scripts/crosstool-NG.sh.in
+@@ -66,6 +66,9 @@
+             *" "*)
+                 CT_Abort "'CT_${d}_DIR'='${dir}' contains a space in it.\nDon't use spaces in paths, it breaks things."
+                 ;;
++            *:*)
++                CT_Abort "'CT_${d}_DIR'='${dir}' contains a colon in it.\nDon't use colons in paths, it breaks things."
++                ;;
+         esac
+ done
+diff --git a/scripts/functions b/scripts/functions
+--- a/scripts/functions
++++ b/scripts/functions
+@@ -71,16 +71,15 @@
+                                 printf "\nRe-trying last command.\n\n"
+                                 break
+                             fi
+-                            ;;&
++                            ;;
+                         3)  break;;
+-                        *)  printf "\nPlease exit with one of these values:\n"
+-                            printf "    1  fixed, continue with next build command\n"
+-                            if [ -n "${cur_cmd}" ]; then
+-                                printf "    2  repeat this build command\n"
+-                            fi
+-                            printf "    3  abort build\n"
+-                            ;;
+                     esac
++                    printf "\nPlease exit with one of these values:\n"
++                    printf "    1  fixed, continue with next build command\n"
++                    if [ -n "${cur_cmd}" ]; then
++                        printf "    2  repeat this build command\n"
++                    fi
++                    printf "    3  abort build\n"
+                 done
+                 exit $result
+             )
+@@ -88,7 +87,7 @@
+             # Restore the trap handler
+             eval "${old_trap}"
+             case "${result}" in
+-                1)  rm -f "${CT_WORK_DIR}/backtrace"; return;;
++                1)  rm -f "${CT_WORK_DIR}/backtrace"; touch "${CT_BUILD_DIR}/skip"; return;;
+                 2)  rm -f "${CT_WORK_DIR}/backtrace"; touch "${CT_BUILD_DIR}/repeat"; return;;
+                 # 3 is an abort, continue...
+             esac
+@@ -258,7 +257,12 @@
+         "${@}" 2>&1 |CT_DoLog "${level}"
+         ret="${?}"
+         if [ -f "${CT_BUILD_DIR}/repeat" ]; then
++            rm -f "${CT_BUILD_DIR}/repeat"
+             continue
++        elif [ -f "${CT_BUILD_DIR}/skip" ]; then
++            rm -f "${CT_BUILD_DIR}/skip"
++            ret=0
++            break
+         else
+             break
+         fi
