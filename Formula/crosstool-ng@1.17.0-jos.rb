@@ -59,12 +59,17 @@ diff --git a/kconfig/zconf.gperf b/kconfig/zconf.gperf
 index c9e690e..21e79e4 100644
 --- a/kconfig/zconf.gperf
 +++ b/kconfig/zconf.gperf
-@@ -7,6 +7,10 @@
+@@ -7,6 +7,15 @@
  %pic
  %struct-type
 
 +%{
-+#include <stddef.h>
++# ifndef offsetof
++#  include <stddef.h>
++#  ifndef offsetof
++#   define offsetof(st, m) ((size_t)(&((st *)0)->m))
++#  endif
++# endif
 +%}
 +
  struct kconf_id;
