@@ -35,7 +35,9 @@ class CrosstoolNgAT1170Jos < Formula
            "--with-readelf=greadelf",
            "--with-libtool=glibtool",
            "--with-libtoolize=glibtoolize",
-           "--with-install=ginstall"
+           "--with-install=ginstall",
+           "--with-sed=gsed",
+           "--with-awk=gawk"
     # Must be done in two steps
     system "make"
     system "make install"
