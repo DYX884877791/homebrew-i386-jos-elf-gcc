@@ -43,7 +43,7 @@ class CrosstoolNgAT1170Jos < Formula
     system "#{bin}/ct-ng version"
   end
 
-  def caveats; <<~EOS.undent
+  def caveats; <<~EOS
     If building a cross compiler your may expirience the following error:
       error: elf.h: No such file or directory
 
