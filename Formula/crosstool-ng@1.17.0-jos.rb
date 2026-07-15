@@ -4,7 +4,7 @@ class CrosstoolNgAT1170Jos < Formula
   url 'http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.17.0.tar.bz2'
   sha256 '12d9349eba248b72322c7f4ef369bd68078a5f85a369b7693226f62d5a6b4205'
 
-  depends_on :automake => :build
+  depends_on 'automake' => :build
   depends_on 'coreutils-jos' => :build
   depends_on 'wget'
   depends_on 'gnu-sed'
