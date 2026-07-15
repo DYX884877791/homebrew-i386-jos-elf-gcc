@@ -5,7 +5,11 @@ class Dev86Jos < Formula
   # 使用 Git 仓库，指定分支（默认 main/master）
   head "https://github.com/lkundrak/dev86.git", branch: "master"
 
+  depends_on "gcc@4.6" => :build
+
   def install
+    # 将编译器指向 Homebrew 安装的具体 GCC 版本
+    ENV["CC"] = "gcc-4.6"
     system "make"
     system "make", "install"
   end
