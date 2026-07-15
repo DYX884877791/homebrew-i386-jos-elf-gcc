@@ -25,7 +25,7 @@ class CrosstoolNgAT1170Jos < Formula
     p << 'http://crosstool-ng.org/download/crosstool-ng/01-fixes/1.17.0/002-scripts_functions_fix_debug_shell.patch'
   end
 
-  patch :p1, :DATA
+  patch :p0, :DATA
 
   def install
     system "./configure", "--prefix=#{prefix}",
@@ -57,10 +57,10 @@ class CrosstoolNgAT1170Jos < Formula
 end
 
 __END__
-diff --git a/kconfig/zconf.gperf b/kconfig/zconf.gperf
+diff --git kconfig/zconf.gperf kconfig/zconf.gperf
 index c9e690e..21e79e4 100644
---- a/kconfig/zconf.gperf
-+++ b/kconfig/zconf.gperf
+--- kconfig/zconf.gperf
++++ kconfig/zconf.gperf
 @@ -7,6 +7,15 @@
  %pic
  %struct-type
@@ -77,3 +77,35 @@ index c9e690e..21e79e4 100644
  struct kconf_id;
 
  static struct kconf_id *kconf_id_lookup(register const char *str, register unsigned int len);
+diff --git kconfig/Makefile.org kconfig/Makefile
+index 3474e5c..74f6b68 100644
+--- kconfig/Makefile.org
++++ kconfig/Makefile
+@@ -35,20 +35,24 @@ conf_SRC = conf.c
+ conf_OBJ = $(patsubst %.c,%.o,$(conf_SRC))
+ conf_DEP = $(patsubst %.o,%.dep,$(conf_OBJ))
+ $(conf_OBJ) $(conf_DEP): CFLAGS += $(INTL_CFLAGS)
++conf: LDFLAGS += -lintl
+
+ # What's needed to build 'mconf'
+ mconf_SRC = mconf.c
+ mconf_OBJ = $(patsubst %.c,%.o,$(mconf_SRC))
+ mconf_DEP = $(patsubst %.c,%.dep,$(mconf_SRC))
+ $(mconf_OBJ) $(mconf_DEP): CFLAGS += $(NCURSES_CFLAGS) $(INTL_CFLAGS)
+-mconf: LDFLAGS += $(NCURSES_LDFLAGS)
++# mconf: LDFLAGS += $(NCURSES_LDFLAGS)
++mconf: LDFLAGS += -lintl $(NCURSES_LDFLAGS)
+
+ # What's needed to build 'nconf'
+ nconf_SRC = nconf.c nconf.gui.c
+ nconf_OBJ = $(patsubst %.c,%.o,$(nconf_SRC))
+ nconf_DEP = $(patsubst %.c,%.dep,$(nconf_SRC))
+-$(nconf_OBJ) $(nconf_DEP): CFLAGS += $(INTL_CFLAGS) -I/usr/include/ncurses
+-nconf: LDFLAGS += -lmenu -lpanel -lncurses
++# $(nconf_OBJ) $(nconf_DEP): CFLAGS += $(INTL_CFLAGS) -I/usr/include/ncurses
++# nconf: LDFLAGS += -lmenu -lpanel -lncurses
++$(nconf_OBJ) $(nconf_DEP): CFLAGS += -I/usr/include/ncurses/ $(INTL_CFLAGS)
++nconf: LDFLAGS += -lintl -lmenu -lpanel -lncurses
+
+ # Under Cygwin, we need to auto-import some libs (which ones, exactly?)
+ # for mconf and nconf to lin properly.
