@@ -1,1 +1,0 @@
-sh tap-update-install.sh gmp@4-jos
