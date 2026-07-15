@@ -112,6 +112,7 @@ diff --git a/scripts/crosstool-NG.sh.in b/scripts/crosstool-NG.sh.in
 +                ;;
          esac
  done
+
 diff --git a/scripts/functions b/scripts/functions
 --- a/scripts/functions
 +++ b/scripts/functions
