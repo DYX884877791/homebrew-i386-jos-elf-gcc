@@ -1,4 +1,5 @@
 # https://github.com/spastorino/homebrew/blob/ae335f108aac33938c5fd193856cc843c474626e/Library/Formula/crosstool-ng.rb#L4
+# https://github.com/oe-lite-rpi/core/blob/3eeafeb848761e6cd941ea1cd1208b16d449d07d/recipes/crosstool-ng/crosstool-ng_1.17.0.oe.sig#L3
 class CrosstoolNgAT1170Jos < Formula
   homepage 'http://crosstool-ng.org'
   url 'http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.17.0.tar.bz2'
@@ -23,6 +24,8 @@ class CrosstoolNgAT1170Jos < Formula
     # The 'case ;;&' construct is a bash4ism. Get rid of it.
     p << 'http://crosstool-ng.org/download/crosstool-ng/01-fixes/1.17.0/002-scripts_functions_fix_debug_shell.patch'
   end
+
+  patch :p0, :DATA
 
   def install
     system "./configure", "--prefix=#{prefix}",
