@@ -38,7 +38,7 @@ class GccAT48 < Formula
   depends_on "libmpc@0.8-jos"
   depends_on "mpfr@2-jos"
   depends_on "isl@0.12-jos"
-  depends_on "cloog@0.15-jos"
+  depends_on "cloog@0.18-jos"
 
   # GCC bootstraps itself, so it is OK to have an incompatible C++ stdlib
   cxxstdlib_check :skip

@@ -25,7 +25,7 @@ class IslAT018Jos < Formula
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "7d90ca0810ac78ac9357f86cf245ec9dfdc7c2171646d4993972d36c1b84e35b"
   end
 
-  depends_on "gmp"
+  depends_on "gmp@4-jos"
 
   # Fix -flat_namespace being used on Big Sur and later.
   patch do
@@ -38,7 +38,7 @@ class IslAT018Jos < Formula
                           "--disable-silent-rules",
                           "--prefix=#{prefix}",
                           "--with-gmp=system",
-                          "--with-gmp-prefix=#{Formula["gmp"].opt_prefix}"
+                          "--with-gmp-prefix=#{Formula["gmp@4-jos"].opt_prefix}"
     system "make"
     system "make", "install"
     (share/"gdb/auto-load").install Dir["#{lib}/*-gdb.py"]

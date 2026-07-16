@@ -8,14 +8,14 @@ class IslAT014Jos < Formula
 
   keg_only "Older version of isl"
 
-  depends_on "gmp"
+  depends_on "gmp@4-jos"
 
   def install
     system "./configure", "--disable-dependency-tracking",
                           "--disable-silent-rules",
                           "--prefix=#{prefix}",
                           "--with-gmp=system",
-                          "--with-gmp-prefix=#{Formula["gmp"].opt_prefix}"
+                          "--with-gmp-prefix=#{Formula["gmp@4-jos"].opt_prefix}"
     system "make"
     system "make", "install"
     (share/"gdb/auto-load").install Dir["#{lib}/*-gdb.py"]
