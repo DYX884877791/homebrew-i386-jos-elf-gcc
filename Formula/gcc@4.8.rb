@@ -61,7 +61,7 @@ class GccAT48 < Formula
       "--with-gmp=#{Formula["gmp@4-jos"].opt_prefix}",
       "--with-mpfr=#{Formula["mpfr@2-jos"].opt_prefix}",
       "--with-mpc=#{Formula["libmpc@0.8-jos"].opt_prefix}",
-      "--with-cloog=#{Formula["cloog@0.15-jos"].opt_prefix}",
+      "--with-cloog=#{Formula["cloog@0.18-jos"].opt_prefix}",
       "--with-isl=#{Formula["isl@0.12-jos"].opt_prefix}",
       "--with-system-zlib",
       "--enable-libstdcxx-time=yes",
