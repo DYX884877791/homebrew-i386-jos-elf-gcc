@@ -128,20 +128,6 @@ class GccAT48 < Formula
     # Even when suffixes are appended, the info pages conflict when
     # install-info is run. Fix this.
     info.rmtree
-
-    # Rename java properties
-    if build.with?("java") || build.with?("all-languages")
-      config_files = [
-        "#{lib}/logging.properties",
-        "#{lib}/security/classpath.security",
-        "#{lib}/i386/logging.properties",
-        "#{lib}/i386/security/classpath.security",
-      ]
-
-      config_files.each do |file|
-        add_suffix file, version_suffix if File.exist? file
-      end
-    end
   end
 
   def add_suffix(file, suffix)
