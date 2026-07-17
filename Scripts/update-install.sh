@@ -114,6 +114,12 @@ if [ -z "$PACKAGE_NAME" ]; then
     exit 1
 fi
 
+# 去掉 .rb 后缀（如果有）
+if [[ "$PACKAGE_NAME" == *.rb ]]; then
+    PACKAGE_NAME="${PACKAGE_NAME%.rb}"
+    echo "🔧 已去除 .rb 后缀，包名：$PACKAGE_NAME"
+fi
+
 echo "📦 准备安装包：$PACKAGE_NAME"
 echo "🔧 选项设置："
 echo "  从源码编译: $BUILD_FROM_SOURCE"
