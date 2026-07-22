@@ -480,3 +480,25 @@ diff --git libgomp/configure.tgt.orig libgomp/configure.tgt
  	    fi
  	esac
  	;;
+@@ -67,7 +67,7 @@ if test $enable_linux_futex = yes; then
+ 	config_path="linux/x86 linux posix"
+ 	case " ${CC} ${CFLAGS} " in
+ 	  *" -m32 "*)
+-	    XCFLAGS="${XCFLAGS} -march=i486 -mtune=i686"
++	    XCFLAGS="${XCFLAGS} -march=i486 -mtune=generic"
+ 	    ;;
+ 	esac
+ 	;;
+--- libgomp/omp.h.in.jj	2008-06-09 13:34:05.000000000 +0200
++++ libgomp/omp.h.in	2008-06-09 13:34:48.000000000 +0200
+@@ -39,8 +39,8 @@ typedef struct
+
+ typedef struct
+ {
+-  unsigned char _x[@OMP_NEST_LOCK_SIZE@]
+-    __attribute__((__aligned__(@OMP_NEST_LOCK_ALIGN@)));
++  unsigned char _x[8 + sizeof (void *)]
++    __attribute__((__aligned__(sizeof (void *))));
+ } omp_nest_lock_t;
+ #endif
+
