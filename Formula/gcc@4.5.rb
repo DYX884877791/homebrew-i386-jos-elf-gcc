@@ -22,7 +22,7 @@ class GccAT45 < Formula
   depends_on "ppl@0.11-jos"
   depends_on "cloog@0.15-jos"
 
-  patch :p0, DATA
+  patch :p0, :DATA
 
   # Fix libffi for ppc, from MacPorts
   patch :p0 do
