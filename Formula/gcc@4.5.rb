@@ -460,24 +460,23 @@ Index: gcc/doc/invoke.texi
  @opindex fdump-rtl-pro_and_epilogue
  Dump after generating the function pro and epilogues.
 
-diff --git libgomp/configure.tgt libgomp/configure.tgt
-index fd55277..94a3748 100644
---- libgomp/configure.tgt
-+++ libgomp/configure.tgt
-@@ -48,14 +48,14 @@ if test $enable_linux_futex = yes; then
-        ;;
+diff --git libgomp/configure.tgt.orig libgomp/configure.tgt
+--- libgomp/configure.tgt.orig	(revision a9afcd142ab200fd7f3f7bb30c472a1409ffefb3)
++++ libgomp/configure.tgt	(revision ae5b43c1f6001b9c0c1e78852b4d55663b7ce3d0)
+@@ -48,14 +48,14 @@
+ 	;;
 
      # Note that bare i386 is not included here.  We need cmpxchg.
 -    i[456]86-*-linux*)
 +    i[3456]86-*-linux*)
-        config_path="linux/x86 linux posix"
-        case " ${CC} ${CFLAGS} " in
-          *" -m64 "*)
-            ;;
-          *)
-            if test -z "$with_arch"; then
--             XCFLAGS="${XCFLAGS} -march=i486 -mtune=${target_cpu}"
-+             XCFLAGS="${XCFLAGS} -march=i486 -mtune=generic"
-            fi
-        esac
-        ;;
+ 	config_path="linux/x86 linux posix"
+ 	case " ${CC} ${CFLAGS} " in
+ 	  *" -m64 "*)
+ 	    ;;
+ 	  *)
+ 	    if test -z "$with_arch"; then
+-	      XCFLAGS="${XCFLAGS} -march=i486 -mtune=${target_cpu}"
++	      XCFLAGS="${XCFLAGS} -march=i486 -mtune=generic"
+ 	    fi
+ 	esac
+ 	;;
