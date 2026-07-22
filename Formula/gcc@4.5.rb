@@ -476,3 +476,6 @@ Index: gcc/doc/invoke.texi
  	    if test -z "$with_arch"; then
 -	      XCFLAGS="${XCFLAGS} -march=i486 -mtune=${target_cpu}"
 +	      XCFLAGS="${XCFLAGS} -march=i486 -mtune=generic"
+ 	    fi
+ 	esac
+ 	;;
