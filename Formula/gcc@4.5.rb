@@ -22,6 +22,8 @@ class GccAT45 < Formula
   depends_on "ppl@0.11-jos"
   depends_on "cloog@0.15-jos"
 
+  patch :p0, DATA
+
   # Fix libffi for ppc, from MacPorts
   patch :p0 do
     url "https://trac.macports.org/export/110576/trunk/dports/lang/gcc45/files/ppc_fde_encoding.diff"
@@ -163,3 +165,314 @@ class GccAT45 < Formula
     assert_equal "Hello, world!\n", `./hello-c`
   end
 end
+
+__END__
+Index: boehm-gc/configure
+===================================================================
+--- boehm-gc/configure.orig
++++ boehm-gc/configure
+@@ -7581,7 +7581,7 @@ $as_echo "$lt_cv_ld_force_load" >&6; }
+       case ${MACOSX_DEPLOYMENT_TARGET-10.0},$host in
+ 	10.0,*86*-darwin8*|10.0,*-darwin[91]*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+-	10.[012]*)
++	10.[012][,.]*)
+ 	  _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}suppress' ;;
+ 	10.*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+Index: gcc/configure
+===================================================================
+--- gcc/configure.orig
++++ gcc/configure
+@@ -13588,7 +13588,7 @@ $as_echo "$lt_cv_ld_force_load" >&6; }
+       case ${MACOSX_DEPLOYMENT_TARGET-10.0},$host in
+ 	10.0,*86*-darwin8*|10.0,*-darwin[91]*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+-	10.[012]*)
++	10.[012][,.]*)
+ 	  _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}suppress' ;;
+ 	10.*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+Index: libffi/configure
+===================================================================
+--- libffi/configure.orig
++++ libffi/configure
+@@ -6985,7 +6985,7 @@ $as_echo "$lt_cv_ld_force_load" >&6; }
+       case ${MACOSX_DEPLOYMENT_TARGET-10.0},$host in
+ 	10.0,*86*-darwin8*|10.0,*-darwin[91]*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+-	10.[012]*)
++	10.[012][,.]*)
+ 	  _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}suppress' ;;
+ 	10.*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+Index: libgfortran/configure
+===================================================================
+--- libgfortran/configure.orig
++++ libgfortran/configure
+@@ -7492,7 +7492,7 @@ $as_echo "$lt_cv_ld_force_load" >&6; }
+       case ${MACOSX_DEPLOYMENT_TARGET-10.0},$host in
+ 	10.0,*86*-darwin8*|10.0,*-darwin[91]*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+-	10.[012]*)
++	10.[012][,.]*)
+ 	  _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}suppress' ;;
+ 	10.*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+Index: libgomp/configure
+===================================================================
+--- libgomp/configure.orig
++++ libgomp/configure
+@@ -7293,7 +7293,7 @@ $as_echo "$lt_cv_ld_force_load" >&6; }
+       case ${MACOSX_DEPLOYMENT_TARGET-10.0},$host in
+ 	10.0,*86*-darwin8*|10.0,*-darwin[91]*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+-	10.[012]*)
++	10.[012][,.]*)
+ 	  _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}suppress' ;;
+ 	10.*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+Index: libjava/classpath/configure
+===================================================================
+--- libjava/classpath/configure.orig
++++ libjava/classpath/configure
+@@ -8286,7 +8286,7 @@ $as_echo "$lt_cv_ld_force_load" >&6; }
+       case ${MACOSX_DEPLOYMENT_TARGET-10.0},$host in
+ 	10.0,*86*-darwin8*|10.0,*-darwin[91]*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+-	10.[012]*)
++	10.[012][,.]*)
+ 	  _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}suppress' ;;
+ 	10.*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+Index: libjava/configure
+===================================================================
+--- libjava/configure.orig
++++ libjava/configure
+@@ -9524,7 +9524,7 @@ $as_echo "$lt_cv_ld_force_load" >&6; }
+       case ${MACOSX_DEPLOYMENT_TARGET-10.0},$host in
+ 	10.0,*86*-darwin8*|10.0,*-darwin[91]*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+-	10.[012]*)
++	10.[012][,.]*)
+ 	  _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}suppress' ;;
+ 	10.*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+Index: libmudflap/configure
+===================================================================
+--- libmudflap/configure.orig
++++ libmudflap/configure
+@@ -7072,7 +7072,7 @@ $as_echo "$lt_cv_ld_force_load" >&6; }
+       case ${MACOSX_DEPLOYMENT_TARGET-10.0},$host in
+ 	10.0,*86*-darwin8*|10.0,*-darwin[91]*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+-	10.[012]*)
++	10.[012][,.]*)
+ 	  _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}suppress' ;;
+ 	10.*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+Index: libobjc/configure
+===================================================================
+--- libobjc/configure.orig
++++ libobjc/configure
+@@ -6752,7 +6752,7 @@ $as_echo "$lt_cv_ld_force_load" >&6; }
+       case ${MACOSX_DEPLOYMENT_TARGET-10.0},$host in
+ 	10.0,*86*-darwin8*|10.0,*-darwin[91]*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+-	10.[012]*)
++	10.[012][,.]*)
+ 	  _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}suppress' ;;
+ 	10.*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+Index: libssp/configure
+===================================================================
+--- libssp/configure.orig
++++ libssp/configure
+@@ -7043,7 +7043,7 @@ $as_echo "$lt_cv_ld_force_load" >&6; }
+       case ${MACOSX_DEPLOYMENT_TARGET-10.0},$host in
+ 	10.0,*86*-darwin8*|10.0,*-darwin[91]*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+-	10.[012]*)
++	10.[012][,.]*)
+ 	  _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}suppress' ;;
+ 	10.*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+Index: libstdc++-v3/configure
+===================================================================
+--- libstdc++-v3/configure.orig
++++ libstdc++-v3/configure
+@@ -7764,7 +7764,7 @@ $as_echo "$lt_cv_ld_force_load" >&6; }
+       case ${MACOSX_DEPLOYMENT_TARGET-10.0},$host in
+ 	10.0,*86*-darwin8*|10.0,*-darwin[91]*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+-	10.[012]*)
++	10.[012][,.]*)
+ 	  _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}suppress' ;;
+ 	10.*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+Index: lto-plugin/configure
+===================================================================
+--- lto-plugin/configure.orig
++++ lto-plugin/configure
+@@ -6608,7 +6608,7 @@ $as_echo "$lt_cv_ld_force_load" >&6; }
+       case ${MACOSX_DEPLOYMENT_TARGET-10.0},$host in
+ 	10.0,*86*-darwin8*|10.0,*-darwin[91]*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+-	10.[012]*)
++	10.[012][,.]*)
+ 	  _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}suppress' ;;
+ 	10.*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+Index: zlib/configure
+===================================================================
+--- zlib/configure.orig
++++ zlib/configure
+@@ -6578,7 +6578,7 @@ $as_echo "$lt_cv_ld_force_load" >&6; }
+       case ${MACOSX_DEPLOYMENT_TARGET-10.0},$host in
+ 	10.0,*86*-darwin8*|10.0,*-darwin[91]*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+-	10.[012]*)
++	10.[012][,.]*)
+ 	  _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}suppress' ;;
+ 	10.*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+--- Makefile.in.orig	2021-07-05 21:24:36.000000000 -0700
++++ Makefile.in	2021-07-05 21:25:45.000000000 -0700
+@@ -575,6 +575,12 @@
+ @host_makefile_frag@
+ ###
+
++# override MacPorts cctools modifications to allow standard gas assembler  to be used
++HOST_EXPORTS            += export DISABLE_MACPORTS_AS_CLANG_SEARCH=1;
++HOST_EXPORTS            += export DISABLE_XCODE_AS_CLANG_SEARCH=1;
++POSTSTAGE1_HOST_EXPORTS += export DISABLE_MACPORTS_AS_CLANG_SEARCH=1;
++POSTSTAGE1_HOST_EXPORTS += export DISABLE_XCODE_AS_CLANG_SEARCH=1;
++
+ # This is the list of directories that may be needed in RPATH_ENVVAR
+ # so that programs built for the target machine work.
+ TARGET_LIB_PATH = $(TARGET_LIB_PATH_libstdc++-v3)$(TARGET_LIB_PATH_libsanitizer)$(TARGET_LIB_PATH_libmpx)$(TARGET_LIB_PATH_libvtv)$(TARGET_LIB_PATH_libcilkrts)$(TARGET_LIB_PATH_liboffloadmic)$(TARGET_LIB_PATH_libssp)$(TARGET_LIB_PATH_libgomp)$(TARGET_LIB_PATH_libitm)$(TARGET_LIB_PATH_libatomic)$(HOST_LIB_PATH_gcc)
+--- gcc/doc/gcc.texi.old	2009-07-16 22:36:10.000000000 +0200
++++ gcc/doc/gcc.texi	2017-09-18 01:46:47.000000000 +0200
+@@ -84,11 +84,11 @@ This file documents the use of the GNU c
+ Published by:
+ @multitable @columnfractions 0.5 0.5
+ @item GNU Press
+-@tab Website: www.gnupress.org
++@tab Website: @uref{http://www.gnupress.org}
+ @item a division of the
+-@tab General: @tex press@@gnu.org @end tex
++@tab General: @email{press@@gnu.org}
+ @item Free Software Foundation
+-@tab Orders:  @tex sales@@gnu.org @end tex
++@tab Orders:  @email{sales@@gnu.org}
+ @item 51 Franklin Street, Fifth Floor
+ @tab Tel 617-542-5942
+ @item Boston, MA 02110-1301 USA
+Index: gcc/doc/cppopts.texi
+===================================================================
+--- gcc/doc/cppopts.texi.orig
++++ gcc/doc/cppopts.texi
+@@ -760,7 +760,7 @@ Replacement:      [    ]    @{    @}
+ Enable special code to work around file systems which only permit very
+ short file names, such as MS-DOS@.
+
+-@itemx --help
++@item --help
+ @itemx --target-help
+ @opindex help
+ @opindex target-help
+Index: gcc/doc/generic.texi
+===================================================================
+--- gcc/doc/generic.texi.orig
++++ gcc/doc/generic.texi
+@@ -1407,13 +1407,13 @@ generate these expressions anyhow, if it
+ not matter.  The type of the operands and that of the result are
+ always of @code{BOOLEAN_TYPE} or @code{INTEGER_TYPE}.
+
+-@itemx POINTER_PLUS_EXPR
++@item POINTER_PLUS_EXPR
+ This node represents pointer arithmetic.  The first operand is always
+ a pointer/reference type.  The second operand is always an unsigned
+ integer type compatible with sizetype.  This is the only binary
+ arithmetic operand that can operate on pointer types.
+
+-@itemx PLUS_EXPR
++@item PLUS_EXPR
+ @itemx MINUS_EXPR
+ @itemx MULT_EXPR
+ These nodes represent various binary arithmetic operations.
+Index: gcc/doc/invoke.texi
+===================================================================
+--- gcc/doc/invoke.texi.orig
++++ gcc/doc/invoke.texi
+@@ -4875,11 +4875,11 @@ Dump after duplicating the computed goto
+ @option{-fdump-rtl-ce3} enable dumping after the three
+ if conversion passes.
+
+-@itemx -fdump-rtl-cprop_hardreg
++@item -fdump-rtl-cprop_hardreg
+ @opindex fdump-rtl-cprop_hardreg
+ Dump after hard register copy propagation.
+
+-@itemx -fdump-rtl-csa
++@item -fdump-rtl-csa
+ @opindex fdump-rtl-csa
+ Dump after combining stack adjustments.
+
+@@ -4890,11 +4890,11 @@ Dump after combining stack adjustments.
+ @option{-fdump-rtl-cse1} and @option{-fdump-rtl-cse2} enable dumping after
+ the two common sub-expression elimination passes.
+
+-@itemx -fdump-rtl-dce
++@item -fdump-rtl-dce
+ @opindex fdump-rtl-dce
+ Dump after the standalone dead code elimination passes.
+
+-@itemx -fdump-rtl-dbr
++@item -fdump-rtl-dbr
+ @opindex fdump-rtl-dbr
+ Dump after delayed branch scheduling.
+
+@@ -4939,7 +4939,7 @@ Dump after the initialization of the reg
+ @opindex fdump-rtl-initvals
+ Dump after the computation of the initial value sets.
+
+-@itemx -fdump-rtl-into_cfglayout
++@item -fdump-rtl-into_cfglayout
+ @opindex fdump-rtl-into_cfglayout
+ Dump after converting to cfglayout mode.
+
+@@ -4969,7 +4969,7 @@ Dump after removing redundant mode switc
+ @opindex fdump-rtl-rnreg
+ Dump after register renumbering.
+
+-@itemx -fdump-rtl-outof_cfglayout
++@item -fdump-rtl-outof_cfglayout
+ @opindex fdump-rtl-outof_cfglayout
+ Dump after converting from cfglayout mode.
+
+@@ -4981,7 +4981,7 @@ Dump after the peephole pass.
+ @opindex fdump-rtl-postreload
+ Dump after post-reload optimizations.
+
+-@itemx -fdump-rtl-pro_and_epilogue
++@item -fdump-rtl-pro_and_epilogue
+ @opindex fdump-rtl-pro_and_epilogue
+ Dump after generating the function pro and epilogues.
+
+--- libgomp/configure.tgt
++++ libgomp/configure.tgt
+@@ -48,14 +48,14 @@ if test $enable_linux_futex = yes; then
+ 	;;
+
+ # Note that bare i386 is not included here. We need cmpxchg.
+- i[456]86-*-linux*)
++ i[3456]86-*-linux*)
+ 	config_path="linux/x86 linux posix"
+ 	case " ${CC} ${CFLAGS} " in
+ 	  *" -m64 "*)
+ 	    ;;
+ 	  *)
+ 	    if test -z "$with_arch"; then
+-	      XCFLAGS="${XCFLAGS} -march=i486 -mtune=${target_cpu}"
++	      XCFLAGS="${XCFLAGS} -march=i486 -mtune=generic"

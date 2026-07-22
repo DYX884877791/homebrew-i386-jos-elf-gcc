@@ -1,3 +1,4 @@
+# https://stackoverflow.com/questions/22107616/static-library-built-for-archive-which-is-not-the-architecture-being-linked-x86
 class BinutilsJos < Formula
   desc "GNU binary tools for native development"
   homepage "https://www.gnu.org/software/binutils/binutils.html"
