@@ -55,7 +55,7 @@ class GccAT44 < Formula
       "--with-mpfr=#{Formula["mpfr@2-jos"].opt_prefix}",
       "--with-ppl=#{Formula["ppl@0.11-jos"].opt_prefix}",
       "--disable-ppl-version-check",
-      "--with-cloog=#{Formula["cloog-ppl@0.15-jos"].opt_prefix}",
+      "--with-cloog=#{Formula["cloog@0.15-jos"].opt_prefix}",
       "--with-system-zlib",
       # This ensures lib, libexec, include are sandboxed so that they
       # don't wander around telling little children there is no Santa
