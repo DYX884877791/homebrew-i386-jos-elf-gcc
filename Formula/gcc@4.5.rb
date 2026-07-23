@@ -96,7 +96,9 @@ class GccAT45 < Formula
 
     args << "--disable-nls"
 
-    args << "--disable-multilib"
+    args << "--enable-multilib"
+    
+    args << "--disable-libgomp"
 
     mkdir "build" do
       unless MacOS::CLT.installed?
