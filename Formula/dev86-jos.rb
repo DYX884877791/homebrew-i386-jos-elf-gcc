@@ -4,8 +4,8 @@ class Dev86Jos < Formula
   license "GPL-2.0"
   # 使用 Git 仓库，指定分支（默认 main/master）
   head "https://github.com/lkundrak/dev86.git", branch: "master"
-  url "https://github.com/DYX884877791/homebrew-i386-jos-elf-gcc/blob/master/Tarballs/dev86-0.16.21.tar.gz"
-  sha256 "0fe2e5da793fd810984deb5978a49afd60c1353cd3363ed44fe3242690d82527"
+  url "https://github.com/DYX884877791/homebrew-i386-jos-elf-gcc/blob/master/Tarballs/dev86-0.16.21.tar.bz2"
+  sha256 "53f5ef56b280dd798ee4e660f3795a196434a2a23cb3b78ac5120fd1bfaf5407"
 
   depends_on "gcc@4.6" => :build
 
