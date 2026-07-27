@@ -9,11 +9,11 @@ class Dev86Jos < Formula
   url "https://raw.githubusercontent.com/DYX884877791/homebrew-i386-jos-elf-gcc/refs/heads/master/Tarballs/dev86-0.16.21.tar.bz2"
   sha256 "53f5ef56b280dd798ee4e660f3795a196434a2a23cb3b78ac5120fd1bfaf5407"
 
-  depends_on "gcc@4.6" => :build
+  # depends_on "gcc@4.6" => :build
 
   def install
-    # 将编译器指向 Homebrew 安装的具体 GCC 版本
-    ENV["CC"] = "gcc-4.6"
+    # # 将编译器指向 Homebrew 安装的具体 GCC 版本
+    # ENV["CC"] = "gcc-4.6"
     system "make"
   end
 end
