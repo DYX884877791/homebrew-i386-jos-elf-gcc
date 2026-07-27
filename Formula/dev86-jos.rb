@@ -15,6 +15,5 @@ class Dev86Jos < Formula
     # 将编译器指向 Homebrew 安装的具体 GCC 版本
     ENV["CC"] = "gcc-4.6"
     system "make"
-    system "make", "install"
   end
 end
