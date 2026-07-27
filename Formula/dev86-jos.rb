@@ -5,7 +5,7 @@ class Dev86Jos < Formula
   # 使用 Git 仓库，指定分支（默认 main/master）
   head "https://github.com/lkundrak/dev86.git", branch: "master"
   url "https://github.com/DYX884877791/homebrew-i386-jos-elf-gcc/blob/master/Tarballs/dev86-0.16.21.tar.gz"
-  sha256 "49c7ee9102d45c2eef072bfb8a49ba3821c9fe3ef31ccd3290f658b667b579a8"
+  sha256 "0fe2e5da793fd810984deb5978a49afd60c1353cd3363ed44fe3242690d82527"
 
   depends_on "gcc@4.6" => :build
 
