@@ -11,9 +11,25 @@ class Dev86Jos < Formula
 
   # depends_on "gcc@4.6" => :build
 
+  patch :p1, :DATA
+  
   def install
     # # 将编译器指向 Homebrew 安装的具体 GCC 版本
     # ENV["CC"] = "gcc-4.6"
     system "make"
   end
 end
+
+__END__
+diff -Nuar dev86-0.16.19.orig/unproto/tok_io.c dev86-0.16.19/unproto/tok_io.c
+--- dev86-0.16.21.orig/unproto/tok_io.c	1997-08-09 16:49:58.000000000 +0200
++++ dev86-0.16.21/unproto/tok_io.c	2014-09-18 09:10:06.244984172 +0200
+@@ -189,7 +189,7 @@
+ 
+ /* do_control - parse control line */
+ 
+-static int do_control()
++static void do_control()
+ {
+     struct token *t;
+     int     line;
