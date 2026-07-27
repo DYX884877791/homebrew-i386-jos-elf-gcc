@@ -21,7 +21,7 @@ class Dev86Jos < Formula
 end
 
 __END__
-diff -Nuar dev86-0.16.19.orig/unproto/tok_io.c dev86-0.16.19/unproto/tok_io.c
+diff -Nuar dev86-0.16.21.orig/unproto/tok_io.c dev86-0.16.21/unproto/tok_io.c
 --- dev86-0.16.21.orig/unproto/tok_io.c	1997-08-09 16:49:58.000000000 +0200
 +++ dev86-0.16.21/unproto/tok_io.c	2014-09-18 09:10:06.244984172 +0200
 @@ -189,7 +189,7 @@
